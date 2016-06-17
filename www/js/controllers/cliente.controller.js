@@ -60,7 +60,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
 	function showOptions( indexCliente ){    
     $ionicActionSheet.show({
       buttons: [
-        { text: '<i class="icon ion-edit"></i> ver' },
+        { text: '<i class="icon ion-android-contact"></i> ver' },
         { text: '<i class="icon ion-edit"></i> Editar' }
       ],
       destructiveText: "<i class='icon ion-trash-b'></i> Delete",
@@ -71,14 +71,14 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
         return true;
       },
       buttonClicked: function(indexButton){
-        if(indexButton == 1){
-          $scope.editCliente( indexCliente );
-        }
-        return true;
-      },
-      buttonClicked: function(indexButton){
-        if(indexButton == 1){
+        if(indexButton == 0){
           $scope.verCliente( indexCliente );
+        }else
+        {
+          if(indexButton == 1){
+              $scope.editCliente( indexCliente );
+
+          }
         }
         return true;
       }
