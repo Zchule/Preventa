@@ -31,6 +31,11 @@ APP.run(function($ionicPlatform) {
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+    .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
     .state('app', {
     url: '/app',
     abstract: true,
@@ -122,5 +127,5 @@ APP.run(function($ionicPlatform) {
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/clientes');
+  $urlRouterProvider.otherwise('/login');
 });
