@@ -1,6 +1,7 @@
 CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state) {
 
   $scope.saveCliente = saveCliente;
+  
   $scope.isNew = true;
   $scope.cliente = {};
 

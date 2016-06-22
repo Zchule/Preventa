@@ -1,4 +1,4 @@
-CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes) {
+CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup) {
 
 	$scope.showOptions = showOptions;
  	$scope.editCliente = editCliente;
@@ -30,7 +30,23 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
     $scope.modal.hide();
   }
 
-  
+  $scope.toDos = Clientes;
+  $scope.listCanSwipe = true;
+
+  $scope.agregar = function() {
+
+    //$scope.data = {};
+
+                /** Se guadar en firebase */
+                $scope.toDos.$add({
+                  "registro": $scope.cliente
+                });
+
+                $scope.modal.hide();
+                console.log($scope.cliente);
+                return $scope.cliente;
+              }
+
   function saveCliente(){
     if($scope.isNew){
       $scope.cliente.face='img/ionic.png';
@@ -84,6 +100,6 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
       }
     });
   }
-  $scope.clientes = Clientes.all();
+  //$scope.clientes = Clientes.all();
 });
 
