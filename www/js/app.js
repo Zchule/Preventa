@@ -8,10 +8,12 @@ var APP = angular.module('starter', [
   'ionic', 
   'ngCordova',
   'starter.controllers',
-   'starter.services'
+   'starter.services',
+   'firebase'
    ]);
  var CTRLS = angular.module('starter.controllers', []);
  var SERVICES = angular.module('starter.services', []);
+
 APP.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -102,7 +104,8 @@ APP.run(function($ionicPlatform) {
       url: '/novedades',
       views: {
         'menuContent': {
-          templateUrl: 'templates/novedades.html'
+          templateUrl: 'templates/novedades.html',
+          controller: 'novCtrl'
         }
       }
     })

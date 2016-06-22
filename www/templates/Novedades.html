@@ -1,5 +1,27 @@
 <ion-view view-title="Novedades">
-  <ion-content>
-    <h1>Novedades</h1>
-  </ion-content>
+
+    <ion-content>
+
+    <button class="button button-icon ion-plus" ng-click="agregar()">
+      </button>
+
+
+      <ion-list
+          show-delete="shouldShowDelete">
+        <ion-item ng-repeat="todo in toDos">
+
+          <h2>{{todo.name}}</h2>
+
+          <ion-option-button class="button-positive"
+                             ng-click="editar(todo)">
+            Editar
+          </ion-option-button>
+          <ion-delete-button class="ion-minus-circled"
+                             ng-click="eliminar(todo)">
+          </ion-delete-button>
+
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </body>
 </ion-view>
