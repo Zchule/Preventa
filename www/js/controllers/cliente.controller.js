@@ -30,22 +30,29 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
     $scope.modal.hide();
   }
 
-  $scope.toDos = Clientes;
+  $scope.clientes = Clientes;
   $scope.listCanSwipe = true;
 
   $scope.agregar = function() {
-
-    //$scope.data = {};
+      if($scope.isNew){
+        $scope.cliente.face='img/ionic.png';
 
                 /** Se guadar en firebase */
-                $scope.toDos.$add({
-                  "registro": $scope.cliente
-                });
+                $scope.clientes.$add({
 
+                  "nombre":$scope.cliente.nombre,
+                  "apPat":$scope.cliente.apPat,
+                  "apMat":$scope.cliente.apMat,
+                  "face": $scope.cliente.face,
+                  "CI":$scope.cliente.CI,
+                  "nombreTienda":$scope.cliente.nombreTienda
+
+                });
                 $scope.modal.hide();
-                console.log($scope.cliente);
                 return $scope.cliente;
               }
+
+          }
 
   function saveCliente(){
     if($scope.isNew){
@@ -57,13 +64,19 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
   }
 
   function deleteCliente(index){
-    $scope.clientes.splice( index, 1 );
+
+    $scope.clientes.$remove(index, 1);
+    //$scope.clientes.splice( index, 1 );
   }
 
   function editCliente(index){
     $scope.isNew = false;
     $scope.cliente = $scope.clientes[index];
+    console.log($scope.cliente.nombre);
+    //$scope.clientes = $scope.cliente;
+
     $scope.modal.show();
+
   }
 
   function verCliente(index){
@@ -93,7 +106,6 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
         {
           if(indexButton == 1){
               $scope.editCliente( indexCliente );
-
           }
         }
         return true;

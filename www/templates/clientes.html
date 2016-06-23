@@ -16,17 +16,16 @@
 <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Buscar" ng-model="nombre.clientes">
+        <input type="text" placeholder="Buscar" ng-model="clientes.nombre">
       </label>
     </div>
 
 <ion-list>
     
-      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left"  ng-repeat="todo in todos | filter: {nombre:clientes.registro.nombre}" type="item-text-wrap" href="#/app/clientes/{{nombre.clientes}}">
-        <!--<img ng-src="{{cliente.face}}" alt ="">-->
-        <h2>{{$scope.cliente.nombre}}</h2>
-
-        <p>{{clientes.registro.apPat}}</p>
+      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left"  ng-repeat="cliente in clientes | filter: {nombre: clientes.nombre}" type="item-text-wrap" href="#/app/clientes/{{nombre.clientes}}">
+        <img ng-src="{{cliente.face}}" alt ="">
+        <h2>{{cliente.nombre}}</h2>
+        <p>{{cliente.apPat}}</p>
 
         <ion-option-button ng-click="deleteCliente( $index )" class="button-calm">
           Delete
