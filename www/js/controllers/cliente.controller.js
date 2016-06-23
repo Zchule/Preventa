@@ -35,7 +35,6 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
 
   $scope.agregar = function() {
       if($scope.isNew){
-        $scope.cliente.face='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
@@ -43,7 +42,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
                   "nombre":$scope.cliente.nombre,
                   "apPat":$scope.cliente.apPat,
                   "apMat":$scope.cliente.apMat,
-                  "face": $scope.cliente.face,
+                  "foto": $scope.cliente.face,
                   "CI":$scope.cliente.CI,
                   "nombreTienda":$scope.cliente.nombreTienda
 
