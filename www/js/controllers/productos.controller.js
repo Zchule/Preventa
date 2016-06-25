@@ -10,4 +10,11 @@ CTRLS.controller('ProductosCtrl', function($scope, Productos, $ionicLoading) {
       $ionicLoading.hide();
   });
 
+    function productoID( index){  
+
+    console.log($scope.productos[index]);
+    //$scope.clientes.splice( index, 1 );
+
+  }
+  
 });

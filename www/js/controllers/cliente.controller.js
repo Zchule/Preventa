@@ -1,4 +1,4 @@
-CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup) {
+CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $ionicLoading) {
 
 	$scope.showOptions = showOptions;
  	$scope.editCliente = editCliente;
@@ -30,11 +30,21 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
     $scope.modal.hide();
   }
 
+
+  $ionicLoading.show({
+    template: 'Cargando...'
+  });
+
   $scope.clientes = Clientes;
-  $scope.listCanSwipe = true;
+
+  $scope.clientes.$loaded().then(function (todo) {
+      $ionicLoading.hide();
+  });
 
   $scope.agregar = function() {
       if($scope.isNew){
+
+        $scope.cliente.face='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
@@ -42,7 +52,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
                   "nombre":$scope.cliente.nombre,
                   "apPat":$scope.cliente.apPat,
                   "apMat":$scope.cliente.apMat,
-                  "foto": $scope.cliente.face,
+                  "face": $scope.cliente.face,
                   "CI":$scope.cliente.CI,
                   "nombreTienda":$scope.cliente.nombreTienda
 
@@ -71,10 +81,11 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
   function editCliente(index){
     $scope.isNew = false;
     $scope.cliente = $scope.clientes[index];
-    console.log($scope.cliente.nombre);
+    
     //$scope.clientes = $scope.cliente;
-
     $scope.modal.show();
+
+    console.log($scope.clientes[index, 1]);
 
   }
 
