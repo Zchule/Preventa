@@ -1,7 +1,7 @@
-<ion-header-bar class="bar-calm">
+<ion-header-bar class="bar-positive">
   <div class = "buttons">
-    <button class="button button-icon icon ion-navicon" ng-click="doSomething()"></button>
-  <h1 class="title">INGRESE</h1>
+    <button class="button button-icon ion-bag"></button>
+  <h1 class="title">INGRESE SUS DATOS</h1>
   <button class ="button button-icon ion-ios-close item-icon-rigth" ></button>
 </div>
 </ion-header-bar>
@@ -17,11 +17,13 @@
         </label>
         <label class="intem item-input item-floating-label">
           <span class="input-label">Contraseña</span>
-          <input placeholder="Escriba su contraseña" type="password" ng-model="data.password" -minlength ="3">
+          <input placeholder="Escriba su contraseña" type="password" ng-model="data.password">
+
+          <!--minlength ="3"-->
         </label>
       </div>
       <div class="padding">
-        <button iu-sref="app" ng-disabled = "!data.username || !data.password "class="button button-block bar bar-calm">Aceptar</button>
+        <button iu-sref="app" ng-disabled = "!data.username || !data.password "class="button button-block bar bar-positive">Aceptar</button>
       </div>
     </form>
   </ion-content>

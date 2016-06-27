@@ -91,16 +91,7 @@ APP.run(function($ionicPlatform) {
         }
       }
     })
-    .state('app.producto-detail', {
-      url: '/productos/:productoId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/producto-detail.html',
-          controller: 'ProductoDetailCtrl'
-        }
-      }
-    })
-    .state('app.novedades', {
+        .state('app.novedades', {
       url: '/novedades',
       views: {
         'menuContent': {
