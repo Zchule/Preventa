@@ -1,0 +1,20 @@
+<ion-view view-title="LISTA DE PRODUCTOS">
+
+<ion-content>
+
+<div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="name.productos">
+      </label>
+    </div>
+    
+      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left" ng-repeat="producto in productos | filter: {name: name.productos}" type="item-text-wrap">
+        <img ng-src="{{producto.face}}">
+        <h2>{{producto.name}}</h2>
+        <p>{{producto.cantidad}}</p>
+        
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

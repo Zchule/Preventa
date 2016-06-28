@@ -1,0 +1,38 @@
+<ion-view title ="CLIENTES">
+
+<ion-nav-buttons side="right">
+    <button ng-click="showModal()" class="button icon ion-person-add"></button>
+  </ion-nav-buttons>
+
+<ion-content>
+
+    <div class="card" ng-show="clientes.length == 0">
+      <div class="item item-text-wrap">
+        No hay nada en la lista, agrega un cliente nuevo porfavor!!
+      </div>
+    </div>
+
+
+<div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Buscar" ng-model="clientes.nombre">
+      </label>
+    </div>
+
+<ion-list>
+    
+      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left"  ng-repeat="cliente in clientes | filter: {nombre: clientes.nombre}" type="item-text-wrap" href="#/app/clientes/{{nombre.clientes}}">
+        <img ng-src="{{cliente.face}}" alt ="">
+        <h2>{{cliente.nombre}}</h2>
+        <p>{{cliente.apPat}}</p>
+
+        <ion-option-button ng-click="deleteCliente( $index )" class="button-calm">
+          Delete
+        </ion-option-button>
+        
+       
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

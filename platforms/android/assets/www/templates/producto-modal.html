@@ -1,0 +1,33 @@
+<ion-modal-view>
+
+	<ion-header-bar class="bar-positive">
+		<h2 class="title">Pedido</h2>
+		<!--{{producto.name}} como titulo-->
+		<div class="buttons">
+			<button ng-click="closeModal()" class="button icon ion-close"></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+
+		<div class="padding" ng-show="producto.face">
+				<img class="full-image" ng-src="{{ producto.face }}">
+			</div>
+
+		<form ng-submit="save()">
+			
+			<div class="list">
+				
+				<label class="item item-input">
+					<span class="input-label">Nombre:</span>
+					<p>{{producto.name}}</p>
+				</label>
+
+				<label class="item item-input">
+					<span class="input-label">Cantidad:</span>
+					<p>{{producto.cantidad}}</p>
+				</label>
+
+		</form>
+	</ion-content>
+</ion-modal-view>

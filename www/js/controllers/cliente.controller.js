@@ -1,5 +1,6 @@
-CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $ionicLoading) {
+CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $cordovaGeolocation, $cordovaCamera, $ionicLoading) {
 
+//$cordovaCapture
 	$scope.showOptions = showOptions;
  	$scope.editCliente = editCliente;
   $scope.showModal = showModal;
@@ -122,6 +123,45 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
       }
     });
   }
+
+  function takePicture(){
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 500,
+      targetHeight: 500,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false,
+      correctOrientation:true
+    };
+
+    $cordovaCamera.getPicture( options )
+    .then(function( imgData ){
+      $scope.cliente.face = "data:image/jpeg;base64," + imgData;
+    });
+
+    function getPosition(){
+
+    var options = {
+      timeout: 3000,
+      enableHighAccuracy: false,
+      maximumAge: 10000
+    };
+
+    $cordovaGeolocation.getCurrentPosition( options )
+    .then(function( position ){
+      console.log( position );
+    });
+  }
+
+  }
+
+
+
+
   //$scope.clientes = Clientes.all();
 });
 
