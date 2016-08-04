@@ -1,27 +1,26 @@
-<ion-view view-title="Novedades">
+<ion-view title ="NOVEDADES">
 
-    <ion-content>
+  <ion-header-bar class="bar-positive">
+    <h2 class="title">novedades</h2>
+    <div class="buttons">
+      <button ng-click="closeModal()" class="button icon ion-close"></button>
+    </div>
 
-    <button class="button button-icon ion-plus" ng-click="agregar()">
-      </button>
+  </ion-header-bar>
 
 
-      <ion-list
-          show-delete="shouldShowDelete">
-        <ion-item ng-repeat="todo in toDos">
+  <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <img class="full-image" ng-src="img/galleta.jpg">
+      </label>
+    </div>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <img class="full-image" ng-src="img/noticias.jpg">
+      </label>
+    </div>
 
-          <h2>{{todo.name}}</h2>
 
-          <ion-option-button class="button-positive"
-                             ng-click="editar(todo)">
-            Editar
-          </ion-option-button>
-          <ion-delete-button class="ion-minus-circled"
-                             ng-click="eliminar(todo)">
-          </ion-delete-button>
-
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </body>
+  </ion-content>
 </ion-view>

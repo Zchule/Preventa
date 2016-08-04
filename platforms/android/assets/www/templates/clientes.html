@@ -23,7 +23,7 @@
 <ion-list>
     
       <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left"  ng-repeat="cliente in clientes | filter: {nombre: clientes.nombre}" type="item-text-wrap" href="#/app/clientes/{{nombre.clientes}}">
-        <img ng-src="{{cliente.face}}" alt ="">
+        <img ng-src="{{cliente.photo}}" alt ="">
         <h2>{{cliente.nombre}}</h2>
         <p>{{cliente.apPat}}</p>
 

@@ -3,13 +3,15 @@ CTRLS.controller('LoginCtrl', function($scope, $stateParams, $state, $ionicPopup
 	$scope.data = {};
 	//scope: $scope
 	$scope.doLogin = doLogin;
+	$scope.salir = salir;
+
 	$scope.users = [];
 	$scope.users = UsersService.all();
 
 	//$scope.user = UsersService.get($stateParams.userId);
 	console.log($scope.users);
 	console.log($scope.users[1]);
-	console.log($scope.users.password);
+	//console.log($scope.users.password);
 
 
 	function doLogin(){
@@ -26,9 +28,9 @@ CTRLS.controller('LoginCtrl', function($scope, $stateParams, $state, $ionicPopup
 		}
 	}
 
-	function Salir(){
+	function salir(){
 
-		console.log("Salir");
+		//.log("Salir");
 		ionic.Platform.exitApp();
 	}
 });

@@ -44,19 +44,23 @@
 				</div>
 
 				<div class="col">
-				<button ng-click="getPosition()" class="button icon-left button-calm button-block ion-location">ubicación</button>
+					<button type="button" ng-click="choosePicture()" class="button icon-left ion-images button-assertive button-block">Libreria</button>
+				</div>
+
+				<div class="col">
+				<button type="button" ng-click="getPosition()" class="button icon-left button-calm button-block ion-location">ubicación</button>
 				</div>
 
 
 			</div>
 
-			<div class="padding" ng-show="cliente.face">
-				<img class="full-image" ng-src="{{ cliente.face }}" alt="photo">
-			</div>
+			<div class="padding" ng-show="cliente.photo">
+				<img class="full-image" ng-src="{{ cliente.photo }}" alt="photo">
+			</div> 
 
 	
 			<div class="padding">
-				<button type="submit" class="button button-calm button-block">Guardar</button>
+				<button type="submit" ng-click="closeModal()" class="button button-calm button-block">Guardar</button>
 			</div>
 
 			

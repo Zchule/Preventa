@@ -1,5 +1,6 @@
-CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $ionicLoading) {
+CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $cordovaGeolocation, $cordovaCamera, $ionicLoading) {
 
+//$cordovaCapture
 	$scope.showOptions = showOptions;
  	$scope.editCliente = editCliente;
   $scope.showModal = showModal;
@@ -7,6 +8,10 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
   $scope.saveCliente = saveCliente;
   $scope.deleteCliente = deleteCliente;
   $scope.verCliente = verCliente;
+
+  $scope.takePicture = takePicture;
+  $scope.choosePicture= choosePicture;
+  $scope.getPosition = getPosition;
 
   $scope.isNew = true;
   $scope.cliente = {};
@@ -44,7 +49,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
   $scope.agregar = function() {
       if($scope.isNew){
 
-        $scope.cliente.face='img/ionic.png';
+       //$scope.cliente.photo='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
@@ -52,20 +57,26 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
                   "nombre":$scope.cliente.nombre,
                   "apPat":$scope.cliente.apPat,
                   "apMat":$scope.cliente.apMat,
-                  "face": $scope.cliente.face,
+                  "photo": $scope.cliente.photo,
                   "CI":$scope.cliente.CI,
-                  "nombreTienda":$scope.cliente.nombreTienda
+                  "nombreTienda":$scope.cliente.nombreTienda,
+                  "latitude":$scope.latitude,
+                  "longitude":$scope.longitude
 
                 });
+
                 $scope.modal.hide();
                 return $scope.cliente;
+                
               }
+
 
           }
 
+
   function saveCliente(){
     if($scope.isNew){
-      $scope.cliente.face='img/ionic.png';
+      $scope.cliente.photo='img/ionic.png';
       $scope.clientes.push( $scope.cliente );
       $scope.cliente ={};
     }
@@ -79,14 +90,12 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
   }
 
   function editCliente(index){
+
     $scope.isNew = false;
     $scope.cliente = $scope.clientes[index];
-    
     //$scope.clientes = $scope.cliente;
     $scope.modal.show();
-
-    console.log($scope.clientes[index, 1]);
-
+    //console.log($scope.clientes[index, 1]);
   }
 
   function verCliente(index){
@@ -122,6 +131,26 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
       }
     });
   }
+  function choosePicture(){
+    console.log("yes!!");
+
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 500,
+      targetHeight: 500,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false,
+      correctOrientation:true
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imgData){
+    $scope.cliente.photo = "data:image/jpeg;base64," + imgData;
+    });
+  }
 
   function takePicture(){
     var options = {
@@ -139,14 +168,31 @@ CTRLS.controller('ClientesCtrl', function($scope, $ionicActionSheet, $ionicModal
 
     $cordovaCamera.getPicture( options )
     .then(function( imgData ){
-      $scope.cliente.face = "data:image/jpeg;base64," + imgData;
+      $scope.cliente.photo = "data:image/jpeg;base64," + imgData;
     });
 
+}
+    function getPosition(){
+
+    var options = {
+      timeout: 3000,
+      enableHighAccuracy: false,
+      maximumAge: 10000
+    };
+
+    $cordovaGeolocation.getCurrentPosition( options )
+    .then(function( position ){
+      console.log( position );
+      $scope.latitude = position.coords.latitude;
+      $scope.longitude = position.coords.longitude;
+
+      console.log($scope.latitude);
+      
+      console.log($scope.longitude);
+
+
+    }); 
   }
-
-
-
-
   //$scope.clientes = Clientes.all();
 });
 
