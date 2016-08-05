@@ -18,6 +18,10 @@ CTRLS.controller('LoginCtrl', function($scope, $stateParams, $state, $ionicPopup
 		if($scope.data.username == "zule" && $scope.data.password == "123"){
 
 				$state.go('app.clientes');
+
+				$scope.data.username="";
+				 $scope.data.password="";
+
 			
 		}else
 		{

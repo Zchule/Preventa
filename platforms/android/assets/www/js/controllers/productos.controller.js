@@ -50,7 +50,7 @@ $ionicModal.fromTemplateUrl('templates/producto-modal.html', {
     $scope.modal.hide();
   }
 
-function editProducto(index){
+function verProducto(index){
     $scope.isNew = false;
     $scope.producto = $scope.productos[index];
     $scope.modal.show();
@@ -67,7 +67,7 @@ function showOptions(indexProducto){
       
       buttonClicked: function(indexButton){
         if(indexButton == 0){
-          $scope.editProducto( indexProducto );
+          $scope.verProducto( indexProducto );
         }
         return true;
       }
