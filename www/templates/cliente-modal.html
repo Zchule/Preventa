@@ -11,7 +11,7 @@
 
 		 <form ng-submit="agregar()">
 
-    		<div class="list">
+    		<div class="list list-inset">
 
 				<label class="item item-input item-floating-label">
 					<span class="input-label">Nombre:</span>
@@ -37,7 +37,7 @@
 
 			</div>
 
-		<div class="item item-text-wrap">{{"Elija o saque una foto de la Tienda para su registro:"}}
+		<div class="item item-text-wrap">{{"Foto de la Tienda:"}}
 
 			<div class="row">
 
@@ -46,16 +46,16 @@
 				</div>
 
 				<div class="col">
-					<button type="button" ng-click="choosePicture()" class="button icon-left ion-images button-assertive button-block">Libreria</button>
+					<button type="button" ng-click="choosePicture()" class="button icon-left ion-images button-royal button-block">Libreria</button>
 				</div>
 
 			</div>
 		</div>
 
-		<div class="item item-text-wrap">{{"Necesitamos su ubicación, no olvide presionar el boton:"}}
+		<div class="item item-text-wrap">{{"Ubicación:"}}
 
 			<div class="padding">
-				<button type="button" ng-click="getPosition()" class="button icon-left button-calm button-block ion-location">ubicación</button>
+				<button type="button" ng-click="getPosition()" class="button icon-left button-calm button-block ion-location">Presioname!!</button>
 			</div>
 		</div>
 
@@ -65,7 +65,7 @@
 
 	
 			<div class="padding">
-				<button type="submit" ng-click="closeModal()" class="button button-calm button-block">Guardar</button>
+				<button type="submit" ng-click="closeModal()" class="button button-positive button-full" ng-show="visibility">Guardar</button>
 			</div>
 
 	</form>

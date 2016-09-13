@@ -1,9 +1,9 @@
 <ion-header-bar class="bar-positive">
   <div class = "buttons" type="center">
-    <button class="button button-icon ion-bag"></button>
+    
   <h1 class="title">INGRESE SUS DATOS</h1>
 
-  <button type="button" class ="button button-icon ion-ios-close item-icon-rigth" ng-click= "salir()"></button>
+  <button type="button" class ="button button-icon ion-ios-close item-icon-rigth" ng-click="salir()"></button>
 </div>
 </ion-header-bar>
 
@@ -11,7 +11,7 @@
 <ion-view title="Login">
   <ion-content>
     <form ng-submit="doLogin()" >
-      <div class="list">
+      <div class="list list-inset">
         <label class="intem item-input item-floating-label">
           <span class="input-label">Usuario</span>
           <input placeholder="Escriba su nombre de Usuario" type="text" ng-model="data.username">
@@ -24,7 +24,7 @@
         </label>
       </div>
       <div class="padding">
-        <button iu-sref="app" ng-disabled = "!data.username || !data.password "class="button button-block bar bar-positive">Aceptar</button>
+        <button iu-sref="app" ng-disabled="!data.username || !data.password" class ="button button-block bar bar-positive">Aceptar</button>
       </div>
     </form>
   </ion-content>

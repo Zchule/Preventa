@@ -1,16 +1,15 @@
-CTRLS.controller('ProductosCtrl', function($scope, Productos, $ionicModal, $ionicActionSheet, $ionicLoading) {
+CTRLS.controller('ProductosCtrl', function($scope, Productos, $ionicModal, $ionicActionSheet, $ionicLoading){
   
 
   $scope.showOptions = showOptions;
-  $scope.editProducto = editProducto;
+  //$scope.editProducto = editProducto;
   $scope.openModal = openModal;
 
   $scope.closeModal = closeModal;
-  $scope.save = save;
-
-  $scope.isNew = true;
   $scope.producto = {};
   $scope.modal = null;
+
+  $scope.verProducto=verProducto;
 
   $ionicLoading.show({
     template: 'Cargando...'
@@ -22,15 +21,6 @@ CTRLS.controller('ProductosCtrl', function($scope, Productos, $ionicModal, $ioni
     $scope.productos.$loaded().then(function (todo) {
       $ionicLoading.hide();
   });
-
-    function save(){
-    if($scope.isNew){
-      $scope.producto.face = 'ionic.png';
-      $scope.productos.push( $scope.producto );
-      $scope.producto = {};
-    }
-    $scope.modal.hide();
-  }
 
 $ionicModal.fromTemplateUrl('templates/producto-modal.html', {
     scope: $scope
@@ -51,7 +41,7 @@ $ionicModal.fromTemplateUrl('templates/producto-modal.html', {
   }
 
 function verProducto(index){
-    $scope.isNew = false;
+
     $scope.producto = $scope.productos[index];
     $scope.modal.show();
   }
@@ -59,7 +49,7 @@ function verProducto(index){
 function showOptions(indexProducto){    
     $ionicActionSheet.show({
       buttons: [
-        { text: '<i class="icon ion-clipboard"></i> ver Producto' }
+        { text: '<i class="icon ion-eye"></i> ver producto' }
       ],
       //destructiveText: "<i class='icon ion-trash-b'></i> Delete",
       cancelText: 'CANCEL',

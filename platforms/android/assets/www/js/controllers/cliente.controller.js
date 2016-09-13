@@ -40,6 +40,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     template: 'Cargando...'
   });
 
+//guradando la conexion de firebase
   $scope.clientes = Clientes;
 
   $scope.clientes.$loaded().then(function (todo) {
@@ -49,7 +50,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
   $scope.agregar = function() {
       if($scope.isNew){
 
-       //$scope.cliente.photo='img/ionic.png';
+       $scope.cliente.photo='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
@@ -89,14 +90,34 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     //$scope.clientes.splice( index, 1 );
   }
 
+//$scope.clientes = ClienteFirebase.all();
+
   function editCliente(index){
 
     $scope.isNew = false;
-    $scope.cliente = $scope.clientes[index];
+    //$scope.cliente = $scope.clientes[index];
+    var cliente = clienteF
     //$scope.clientes = $scope.cliente;
-    $scope.modal.show();
-    //console.log($scope.clientes[index, 1]);
-  }
+    // no olvidar $scope.modal.show();
+    console.log($scope.clientes[index]);
+    $scope.cliente.update({
+
+                  "nombre":$scope.cliente.nombre,
+                  "apPat":$scope.cliente.apPat,
+                  "apMat":$scope.cliente.apMat,
+                  "photo": $scope.cliente.photo,
+                  "CI":$scope.cliente.CI,
+                  "nombreTienda":$scope.cliente.nombreTienda,
+                  "latitude":$scope.latitude,
+                  "longitude":$scope.longitude
+
+                });
+
+                $scope.modal.hide();
+                return $scope.cliente;
+                
+              }
+
 
   function verCliente(index){
 

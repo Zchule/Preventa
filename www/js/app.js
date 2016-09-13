@@ -27,10 +27,13 @@ APP.run(function($ionicPlatform) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider) { //ionicConfigProvider
+  //ionicConfigProvider.tabs.position("bottom");  //para que los tab sean de =posiition
+//ionicConfigProvider.navBar.alignTitle("center"); /para que el title este en el centro
   $stateProvider
 
     .state('login', {
@@ -42,7 +45,7 @@ APP.run(function($ionicPlatform) {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'ProductosPedidoCtrl'
   })
 
   .state('app.search', {
@@ -53,16 +56,7 @@ APP.run(function($ionicPlatform) {
       }
     }
   })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-
+  
   .state('app.clientes', {
       url: '/clientes',
       views: {
@@ -91,12 +85,22 @@ APP.run(function($ionicPlatform) {
         }
       }
     })
-        .state('app.novedades', {
-      url: '/novedades',
+
+    .state('app.productosPedidos', {
+      url: '/productosPedidos',
       views: {
         'menuContent': {
-          templateUrl: 'templates/novedades.html',
-          controller: 'novCtrl'
+          templateUrl: 'templates/productosPedidos.html',
+          controller: 'ProductosPedidoCtrl'
+        }
+      }
+    })
+        .state('app.pedidos', {
+      url: '/pedidos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pedidos.html',
+          controller: 'PedidosCtrl'
         }
       }
     })

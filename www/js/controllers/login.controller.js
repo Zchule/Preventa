@@ -34,6 +34,8 @@ CTRLS.controller('LoginCtrl', function($scope, $stateParams, $state, $ionicPopup
 
 	function salir(){
 
+		//if(window.navigator.app){navigator.app.exitApp();}
+		//else if(window.navigator.device){navigator.device.exitApp();}
 		//.log("Salir");
 		ionic.Platform.exitApp();
 	}

@@ -1,0 +1,47 @@
+<ion-modal-view>
+
+	<ion-header-bar class="bar-positive">
+		<h2 class="title">Cliente</h2>
+		<div class="buttons">
+			<button ng-click="closeModal2()" class="button icon ion-close"></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+
+		 <form ng-submit="agregar()">
+
+    		<div class="list list-inset">
+
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Nombre:</span>
+					<input type="text" placeholder="Nombre" ng-model="cliente.nombre" disabled>
+				</label>
+
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Apellido Paterno</span>
+					<input type="text" placeholder="Apellido Paterno" ng-model="cliente.apPat" disabled>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Apellido Materno</span>
+					<input type="text" placeholder="Apellido Materno" ng-model="cliente.apMat" disabled>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Carnet de Identidad</span>
+					<input type="number" placeholder="CI" disabled ng-model="cliente.CI">
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Nombre Tienda</span>
+					<input type="text" placeholder="Nombre Tienda" disabled  ng-model="cliente.nombreTienda">
+				</label>
+
+			</div>
+
+
+			<div class="padding" ng-show="cliente.photo">
+				<img class="full-image" ng-src="{{ cliente.photo }}" alt="photo">
+			</div> 
+	</form>
+			
+	</ion-content>
+</ion-modal-view>
