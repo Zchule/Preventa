@@ -63,7 +63,7 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
 
 //guardando la conexion de firebase
   $scope.users = Users.all();
-
+  
   $scope.users.$loaded().then(function (todo) {
       $ionicLoading.hide();
   });

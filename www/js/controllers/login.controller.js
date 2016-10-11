@@ -1,4 +1,4 @@
-CTRLS.controller('LoginCtrl', function($scope, $rootScope, $stateParams, $state, $ionicPopup, Users){
+CTRLS.controller('LoginCtrl', function($scope, Users, $rootScope, $stateParams, $state, $ionicPopup){
 	
 	$scope.data = {};
 	//scope: $scope
@@ -8,19 +8,14 @@ CTRLS.controller('LoginCtrl', function($scope, $rootScope, $stateParams, $state,
 	$scope.users = [];
 	$scope.users = Users.all();
 
-	$rootScope.sesion = "";
-
-	//$scope.user = UsersService.get($stateParams.userId);
 	console.log($scope.users);
-	console.log($scope.users[1]);
-	//console.log($scope.users.password);
 
 
 	function doLogin(){
 		if($scope.data.username == "zule" && $scope.data.password == "123"){
 
 				console.log("zule admin");
-				$rootScope.sesion = "preventista";
+				//$rootScope.sesion = "preventista";
 				$state.go('app.clientes', {User: $scope.data.username});
 
 				$scope.data.username="";

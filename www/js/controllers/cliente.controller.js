@@ -3,7 +3,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 //$cordovaCapture
 	$scope.showOptions = showOptions;
  	$scope.editCliente = editCliente;
-  $scope.showModal = showModal;
+  $scope.openModal = openModal;
   $scope.closeModal = closeModal;
   $scope.saveCliente = saveCliente;
   $scope.deleteCliente = deleteCliente;
@@ -34,16 +34,24 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
   });
 
 
-  function showModal(){
-    $scope.isNew = true;
+  function openModal(){
+    //$scope.isNew = true;
     $scope.cliente = {};
     $scope.visibility="true";
     $scope.modal.show();
   }
 
   function closeModal(){
+
     $scope.modal.hide();
+    //$scope.isNew = true;
+    //$scope.cliente = {};
   }
+
+  $scope.newCliente = function(){
+    $scope.openModal();
+  }
+
   $scope.showModal2 = showModal2;
 
   function showModal2(){
@@ -70,7 +78,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
       $ionicLoading.hide();
   });
 
-  $scope.agregar = function() {
+  $scope.agregarCliente = function() {
 
     $scope.visibility=true;
       if($scope.isNew){
@@ -99,31 +107,8 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 
           }
 
-
-  function saveCliente(){
-    if($scope.isNew){
-      $scope.cliente.photo='img/ionic.png';
-      $scope.clientes.push( $scope.cliente );
-      $scope.cliente ={};
-    }
-    $scope.modal.hide();
-  }
-
-  function deleteCliente(index){
-
-    $scope.clientes.$remove(index, 1);
-    //$scope.clientes.splice( index, 1 );
-  }
-
-//$scope.clientes = ClienteFirebase.all();
-
-  function editCliente(index){
-    $scope.visibility = true;
-
-    $scope.isNew = false;
-    $scope.cliente = $scope.clientes[index];
-    console.log($scope.cliente);
-
+  $scope.updateCliente = function(){
+    console.log("updateCliente");
     var cliente = Clientes.getRef($scope.cliente.$id);
     console.log(cliente); 
     cliente.update({
@@ -136,14 +121,39 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
                   "nombreTienda": $scope.cliente.nombreTienda,
                   //latitude: $scope.latitude,
                   //longitude: $scope.longitude
-
                 });
 
                 $scope.modal.show();
                 return $scope.cliente;
-                
-              }
+  }
+  function saveCliente(){
 
+      if($scope.isNew){
+        $scope.agregarCliente();
+        console.log("nuevo");
+      }else{
+
+        $scope.updateCliente();
+      }
+    }
+  function deleteCliente(index){
+
+    $scope.clientes.$remove(index, 1);
+    //$scope.clientes.splice( index, 1 );
+  }
+
+//$scope.clientes = ClienteFirebase.all();
+
+  function editCliente(index){
+
+    console.log("edit");
+    $scope.isNew = false;
+    $scope.visibility = true;
+    $scope.cliente = $scope.clientes[index];
+    console.log($scope.cliente);
+    $scope.modal.show();
+
+  }
 
   function verCliente(index){
     //$scope.visibility=false;

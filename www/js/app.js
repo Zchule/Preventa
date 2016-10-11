@@ -41,6 +41,7 @@ APP.run(function($ionicPlatform) {
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
   })
+
     .state('app', {
     url: '/app',
     abstract: true,
