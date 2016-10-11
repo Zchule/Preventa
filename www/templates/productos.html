@@ -11,10 +11,10 @@
     
       <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left" ng-repeat="producto in productos | filter: {name: name.productos}" type="item-text-wrap">
         <img ng-src="{{producto.face}}">
-        <h2>{{producto.name}}</h2>
         <p>{{producto.cantidad}}</p>
         
       </ion-item>
     </ion-list>
   </ion-content>
+  
 </ion-view>

@@ -32,8 +32,8 @@ APP.run(function($ionicPlatform) {
 })
 
 .config(function($stateProvider, $urlRouterProvider) { //ionicConfigProvider
-  //ionicConfigProvider.tabs.position("bottom");  //para que los tab sean de =posiition
-//ionicConfigProvider.navBar.alignTitle("center"); /para que el title este en el centro
+//ionicConfigProvider.sidemenu.position("botton");  //para que los tab sean de =posiition
+//ionicConfigProvider.navBar.alignTitle("center"); //para que el title este en el centro
   $stateProvider
 
     .state('login', {
@@ -48,17 +48,18 @@ APP.run(function($ionicPlatform) {
     controller: 'ProductosPedidoCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.users', {
+    url: '/users',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/users.html',
+        controller: 'UsersCtrl'
       }
     }
   })
   
   .state('app.clientes', {
-      url: '/clientes',
+      url: '/clientes/:User',
       views: {
         'menuContent': {
           templateUrl: 'templates/clientes.html',
@@ -87,7 +88,7 @@ APP.run(function($ionicPlatform) {
     })
 
     .state('app.productosPedidos', {
-      url: '/productosPedidos',
+      url: '/productosPedidos/:cliente',
       views: {
         'menuContent': {
           templateUrl: 'templates/productosPedidos.html',
@@ -95,12 +96,22 @@ APP.run(function($ionicPlatform) {
         }
       }
     })
-        .state('app.pedidos', {
+    .state('app.pedidos', {
       url: '/pedidos',
       views: {
         'menuContent': {
           templateUrl: 'templates/pedidos.html',
           controller: 'PedidosCtrl'
+        }
+      }
+    })
+
+    .state('app.mapas', {
+      url: '/mapas',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/mapas.html',
+          controller: 'MapasCtrl'
         }
       }
     })

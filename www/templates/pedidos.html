@@ -1,4 +1,4 @@
-<!--*<ion-view view-title="LISTA DE PEDIDOS">
+<ion-view view-title="LISTA DE PEDIDOS">
 
 <ion-content>
 
@@ -8,11 +8,21 @@
       </div>
     </div>
 
-</ion-content-->
-<ion-view title="mapa">
-	<ion-content scroll="false">
-		<div data-tap-disable="true"></div>
-		<div>{{coords.latitude}},{{coords.longitude}}</div>
-		<div id="map"></div>
-	</ion-content>
+<div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="name.pedido">
+      </label>
+    </div>
+    
+      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left" ng-repeat="pedido in pedidos | filter: {name: name.pedidos}" type="item-text-wrap">
+        <img ng-src="{{pedido.foto}}">
+        <p>{{pedido.precio}}</p>
+        <p>{{pedido.cantidadProducto}}</p>
+        <p>{{pedido.total}}</p>
+        
+      </ion-item>
+
+  </ion-content>
+  
 </ion-view>

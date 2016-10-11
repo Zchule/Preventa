@@ -60,7 +60,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 
 
   $ionicLoading.show({
-    template: 'Cargando...'
+    template:'Cargando...'
   });
 
 //guardando la conexion de firebase

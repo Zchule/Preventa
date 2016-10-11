@@ -1,4 +1,4 @@
-CTRLS.controller('ProductosPedidoCtrl', function($scope, Productos, Pedidos, $ionicModal, $timeout, $state, $ionicPopup, $ionicActionSheet, $ionicLoading){
+CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, $stateParams,Productos, Pedidos, $ionicModal, $timeout, $state, $ionicPopup, $ionicActionSheet, $ionicLoading){
 
   $scope.showOptions=showOptions;
 
@@ -28,7 +28,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, Productos, Pedidos, $io
 
     if($scope.loginData.username == "b" && $scope.loginData.password == "123"){
 
-        $state.go('app.productosPedidos');
+        $state.go('app.productosPedidos',{cliente: $scope.loginData.username});
 
         $scope.loginData.username="";
          $scope.loginData.password="";
@@ -82,10 +82,38 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, Productos, Pedidos, $io
     $scope.modal2.show();
   }
 
-  function closeModal(){
+  $scope.pedidos = Pedidos;
+  $scope.pedido = {};
+
+  function closeModal(producto, pedido){
+   $scope.producto.precio = producto.precio;
+    $scope.pedido.total = parseInt($scope.producto.precio*pedido.cantProducto);
+    console.log($scope.pedido.total);
+
+    /** Se guadar en firebase */
+                $scope.pedidos.$add({
+                  
+                  "id": producto.$id,
+                  "foto": producto.face,
+                  "precio":producto.precio,
+                  "cantidadProducto":pedido.cantProducto,
+                  "total": $scope.pedido.total
+                });
+
     $scope.modal2.hide();
+    $state.go("productos");
+    //$location.url('app.productosPedidos');
+  // $scope.$apply();
+   //$route.reload();
   }
 
+  $scope.Salir=Salir;
+
+  function Salir(){
+
+    $scope.modal2.hide();
+
+  }
 
     function showOptions(indexProducto){    
     $ionicActionSheet.show({
@@ -105,41 +133,17 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, Productos, Pedidos, $io
     });
   }
 
-  $scope.pedidos = Pedidos;
-  $scope.pedido = {};
-
-  $scope.calcular=calcular;
-
-  function calcular(){
-
-      console.log("calcular");
-      console.log($scope.pedido.cantidadProducto);
-
-
-  }
-
   function hacerPedido(index){
+    //agarrar idpreventa, id cliente, 
+
+    //agarrar el idproducto iijoprecio, la cantidad de pedido
 
                 $scope.producto = $scope.productos[index];
                 $scope.modal2.show();
+                console.log($stateParams.cliente); 
+                $scope.pedido.cantProducto = 1;
+                //$scope.modal.hide();  
+                //return $scope.productos; 
 
-                $scope.pedido.cantidadProducto = 1;
-                //$scope.total =($scope.producto.precio*$scope.cantidadProducto);
-                //console.log($scope.total);
-    
-                /** Se guadar en firebase */
-                $scope.pedidos.$add({
-                  
-                  "name":$scope.producto.name,
-                  "cantidad":$scope.producto.cantidad,
-                  "precio":$scope.producto.precio,
-                  "cantidadProducto":$scope.pedido.cantidadProducto
-                });
-
-                $scope.modal.hide();                
               }
-    //$scope.modal.hide();
-    //$scope.total = ($scope.producto.precio * $scope.cantidadProducto);
-    //console.log($scope.total);
-
 });

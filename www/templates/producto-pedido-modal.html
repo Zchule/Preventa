@@ -4,16 +4,16 @@
 		<h2 class="title"> Hacer Pedido</h2>
 		<!--{{producto.name}} como titulo-->
 		<div class="buttons">
-			<button ng-click="closeModal()" class="button icon ion-close"></button>
+			<button ng-click="Salir()" class="button icon ion-close"></button>
 		</div>
 	</ion-header-bar>
 
 	<ion-content>
 
+
 		<div class="padding" ng-show="producto.face">
 				<img class="full-image" type="center" ng-src="{{ producto.face }}" style="width: 100px; height: 100px">
 			</div>
-
 		<form ng-submit="hacerPedido()">
 			
 			<div class="list">
@@ -21,6 +21,7 @@
 				<label class="item item-input">
 					<span class="input-label">Nombre:</span>
 					<p>{{producto.name}}</p>
+
 				</label>
 
 				<label class="item item-input">
@@ -37,19 +38,14 @@
 			<div>
 
   				 <label class="item item-input">
-   				 <span class="input-label">Cantidad</span>
-    			<input type="text" ng-model="pedido.cantidadProducto">
+   				 <span class="input-label">Cantidad:</span>
+    			<input type="Number" ng-model="pedido.cantProducto">
   				 </label>
-  				<!--<label class="item item-input">
-    			<span class="input-label">Precio Total:</span>
-    			{{total}}
-    			<input type="Number">
-  				</label>-->
-  				<button class="button button-calm" type="submit" ng-clik="calcular()">Calcular</button>
 
   				<label class="item item-input">
-    			<span class="input-label">Precio Total:   {{pedido.cantidadProducto * producto.precio}}</span>
-    			<input type="Number">
+    			<span class="input-label">Precio Total:</span>
+    			{{producto.precio*pedido.cantProducto}}
+    			<input type="Number" ng-model="pedido.total">
   				</label>
 
   			</div>
@@ -57,7 +53,7 @@
 
 			
 			<div class="padding">
-				<button type="submit" class="button button-positive button-block" ng-click="closeModal()" ng-click="ir()">Hacer Pedido</button>
+				<button type="submit" class="button button-positive button-block" ng-click="closeModal(producto, pedido)">Hacer Pedido</button>
 			</div>
 
 		</form>
