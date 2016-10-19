@@ -27,10 +27,13 @@ APP.run(function($ionicPlatform) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider) { //ionicConfigProvider
+//ionicConfigProvider.sidemenu.position("botton");  //para que los tab sean de =posiition
+//ionicConfigProvider.navBar.alignTitle("center"); //para que el title este en el centro
   $stateProvider
 
     .state('login', {
@@ -38,33 +41,26 @@ APP.run(function($ionicPlatform) {
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
   })
+
     .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'ProductosPedidoCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.users', {
+    url: '/users',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/users.html',
+        controller: 'UsersCtrl'
       }
     }
   })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-
+  
   .state('app.clientes', {
-      url: '/clientes',
+      url: '/clientes/:User',
       views: {
         'menuContent': {
           templateUrl: 'templates/clientes.html',
@@ -91,12 +87,32 @@ APP.run(function($ionicPlatform) {
         }
       }
     })
-        .state('app.novedades', {
-      url: '/novedades',
+
+    .state('app.productosPedidos', {
+      url: '/productosPedidos/:cliente',
       views: {
         'menuContent': {
-          templateUrl: 'templates/novedades.html',
-          controller: 'novCtrl'
+          templateUrl: 'templates/productosPedidos.html',
+          controller: 'ProductosPedidoCtrl'
+        }
+      }
+    })
+    .state('app.pedidos', {
+      url: '/pedidos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pedidos.html',
+          controller: 'PedidosCtrl'
+        }
+      }
+    })
+
+    .state('app.mapas', {
+      url: '/mapas',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/mapas.html',
+          controller: 'MapasCtrl'
         }
       }
     })

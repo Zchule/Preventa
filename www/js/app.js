@@ -48,6 +48,15 @@ APP.run(function($ionicPlatform) {
     templateUrl: 'templates/menu.html',
     controller: 'ProductosPedidoCtrl'
   })
+    .state('app.loginCliente', {
+    url: '/loginCliente',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/loginCliente.html',
+        controller: 'ProductosPedidoCtrl'
+      }
+    }
+  })
 
   .state('app.users', {
     url: '/users',
@@ -97,12 +106,21 @@ APP.run(function($ionicPlatform) {
         }
       }
     })
-    .state('app.pedidos', {
-      url: '/pedidos',
+    .state('app.listaPedidos', {
+      url: '/listaPedidos',
       views: {
         'menuContent': {
-          templateUrl: 'templates/pedidos.html',
+          templateUrl: 'templates/listaPedidos.html',
           controller: 'PedidosCtrl'
+        }
+      }
+    })
+    .state('app.listaEntrega', {
+      url: '/listaEntrega',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/listaEntrega.html',
+          controller: 'listaEntregaCtrl'
         }
       }
     })

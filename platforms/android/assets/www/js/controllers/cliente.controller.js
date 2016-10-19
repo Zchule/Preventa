@@ -3,7 +3,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 //$cordovaCapture
 	$scope.showOptions = showOptions;
  	$scope.editCliente = editCliente;
-  $scope.showModal = showModal;
+  $scope.openModal = openModal;
   $scope.closeModal = closeModal;
   $scope.saveCliente = saveCliente;
   $scope.deleteCliente = deleteCliente;
@@ -25,32 +25,65 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     $scope.modal = modal;
   });
 
-  function showModal(){
-    $scope.isNew = true;
+  $ionicModal.fromTemplateUrl('templates/cliente-modal2.html', {
+    scope: $scope
+  })
+
+  .then(function(modal2){
+    $scope.modal2 = modal2;
+  });
+
+
+  function openModal(){
+    //$scope.isNew = true;
     $scope.cliente = {};
+    $scope.visibility="true";
     $scope.modal.show();
   }
 
   function closeModal(){
+
     $scope.modal.hide();
+    //$scope.isNew = true;
+    //$scope.cliente = {};
+  }
+
+  $scope.newCliente = function(){
+    $scope.openModal();
+  }
+
+  $scope.showModal2 = showModal2;
+
+  function showModal2(){
+    $scope.isNew = true;
+    $scope.cliente = {};
+    $scope.visibility="true";
+    $scope.modal2.show();
+  }
+  $scope.closeModal2 = closeModal2;
+
+  function closeModal2(){
+    $scope.modal2.hide();
   }
 
 
   $ionicLoading.show({
-    template: 'Cargando...'
+    template:'Cargando...'
   });
 
-//guradando la conexion de firebase
-  $scope.clientes = Clientes;
+//guardando la conexion de firebase
+  $scope.clientes = Clientes.all();
 
   $scope.clientes.$loaded().then(function (todo) {
       $ionicLoading.hide();
   });
 
-  $scope.agregar = function() {
+  $scope.agregarCliente = function() {
+
+    $scope.visibility=true;
       if($scope.isNew){
 
-       $scope.cliente.photo='img/ionic.png';
+       //$scope.cliente.photo='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
@@ -74,16 +107,35 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 
           }
 
+  $scope.updateCliente = function(){
+    console.log("updateCliente");
+    var cliente = Clientes.getRef($scope.cliente.$id);
+    console.log(cliente); 
+    cliente.update({
 
-  function saveCliente(){
-    if($scope.isNew){
-      $scope.cliente.photo='img/ionic.png';
-      $scope.clientes.push( $scope.cliente );
-      $scope.cliente ={};
-    }
-    $scope.modal.hide();
+                  "nombre": $scope.cliente.nombre,
+                  "apPat": $scope.cliente.apPat,
+                  "apMat": $scope.cliente.apMat,
+                  "photo": $scope.cliente.photo,
+                  "CI": $scope.cliente.CI,
+                  "nombreTienda": $scope.cliente.nombreTienda,
+                  //latitude: $scope.latitude,
+                  //longitude: $scope.longitude
+                });
+
+                $scope.modal.show();
+                return $scope.cliente;
   }
+  function saveCliente(){
 
+      if($scope.isNew){
+        $scope.agregarCliente();
+        console.log("nuevo");
+      }else{
+
+        $scope.updateCliente();
+      }
+    }
   function deleteCliente(index){
 
     $scope.clientes.$remove(index, 1);
@@ -94,43 +146,37 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 
   function editCliente(index){
 
+    console.log("edit");
     $scope.isNew = false;
-    //$scope.cliente = $scope.clientes[index];
-    var cliente = clienteF
-    //$scope.clientes = $scope.cliente;
-    // no olvidar $scope.modal.show();
-    console.log($scope.clientes[index]);
-    $scope.cliente.update({
+    $scope.visibility = true;
+    $scope.cliente = $scope.clientes[index];
+    console.log($scope.cliente);
+    $scope.modal.show();
 
-                  "nombre":$scope.cliente.nombre,
-                  "apPat":$scope.cliente.apPat,
-                  "apMat":$scope.cliente.apMat,
-                  "photo": $scope.cliente.photo,
-                  "CI":$scope.cliente.CI,
-                  "nombreTienda":$scope.cliente.nombreTienda,
-                  "latitude":$scope.latitude,
-                  "longitude":$scope.longitude
-
-                });
-
-                $scope.modal.hide();
-                return $scope.cliente;
-                
-              }
-
+  }
 
   function verCliente(index){
+    //$scope.visibility=false;
+    var inputs =document.getElementsByTagName("input");
+    console.log(inputs);
 
     $scope.isNew = false;
     $scope.cliente = $scope.clientes[index];
-    $scope.modal.show();
+
+    $scope.modal2.show();
+  }
+
+  $scope.verPedidoCliente = verPedidoCliente;
+  function verPedidoCliente(index){
+    console.log("verPedidoCliente")
   }
 
 	function showOptions( indexCliente ){    
     $ionicActionSheet.show({
       buttons: [
         { text: '<i class="icon ion-android-contact"></i> ver' },
-        { text: '<i class="icon ion-edit"></i> Editar' }
+        { text: '<i class="icon ion-edit"></i> Editar' },
+        {text: '<i class="icon ion-clipboard"></i> Ver Pedidos' }
       ],
       destructiveText: "<i class='icon ion-trash-b'></i> Delete",
       cancelText: 'CANCEL',
@@ -146,6 +192,13 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
         {
           if(indexButton == 1){
               $scope.editCliente( indexCliente );
+          }else
+          {
+             
+          if(indexButton == 2){
+              $scope.verPedidoCliente( indexCliente );
+          }
+      
           }
         }
         return true;
@@ -206,7 +259,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
       console.log( position );
       $scope.latitude = position.coords.latitude;
       $scope.longitude = position.coords.longitude;
-
+      //$scope.coords=position.coords;  //para agarrar en conjunto
       console.log($scope.latitude);
       
       console.log($scope.longitude);

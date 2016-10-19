@@ -5,7 +5,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/loginCliente.html', {
+  /*$ionicModal.fromTemplateUrl('templates/loginCliente.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
@@ -19,9 +19,11 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
-  };
+  };*/
 
   // Perform the login action when the user submits the login form
+
+  console.log($rootScope.menu);
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
 
@@ -29,6 +31,8 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
     if($scope.loginData.username == "b" && $scope.loginData.password == "123"){
 
         $state.go('app.productosPedidos',{cliente: $scope.loginData.username});
+
+        console.log($rootScope.menu);
 
         $scope.loginData.username="";
          $scope.loginData.password="";
@@ -46,9 +50,9 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
+    /*$timeout(function() {
       $scope.closeLogin();
-    }, 1000);
+    }, 1000);*/
   };
 
   $scope.producto = {};

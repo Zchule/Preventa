@@ -26,19 +26,28 @@
       </div>
 
       <div class="list list-inset">
-       <label class="item item-select" ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+       <label class="item item-input item-select">
+       <div class = "input-label">
         Tipo de Usuario
-        <select>
-          <option>Admin</option>
-          <option selected>Preventa</option>
-          <option>Distribuidor</option>
+        </div>
+        <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+          <option>Preventa</option>
+          <option selected>Distribuidor</option>
+          <option>Administrador</option>
         </select>
         </label>
-      </div>
+        </div>   
 
       <div class="padding">
         <button iu-sref="app" ng-disabled="!data.username || !data.password" class ="button button-block bar bar-positive" ng-click="doLogin()">Aceptar</button>
       </div>
+
+     <!-- <div class="padding">
+
+        <button iu-sref="app" class ="button button-block bar bar-balanced" ng-click="boton()">boton</button>
+        
+      </div> -->
+
     </form>
   </ion-content>
 </ion-view>

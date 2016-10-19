@@ -19,35 +19,9 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-
-        <ion-item menu-close href="#/app/registro">
-        <i class="icon ion-person-add"></i> 
-          Registrar Cliente
-        </ion-item>
-
-        <ion-item menu-close href="#/app/clientes">
-        <i class="icon ion-ios-people"></i> 
-          Lista de Clientes
-        </ion-item>
-        
-        <ion-item menu-close href="#/app/productos">
-        <i class="icon ion-ios-list"></i> 
-          Productos
-        </ion-item>
-
-        <ion-item menu-close ng-click="login()">
-        <i class="icon ion-ios-cart"></i> 
-          Hacer Pedido
-        </ion-item>
-
-        <ion-item menu-close href="#/app/pedidos">
-        <i class="icon ion-ios-list"></i> 
-          Lista de Pedidos
-        </ion-item>
-
-        <ion-item menu-close href="#/app/mapas">
-        <i class="icon ion-map"></i>
-          Mapas
+        <ion-item ng-repeat="m in menu" href= {{m.ref}}>
+        <i class={{m.icon}}></i> 
+          {{m.titulo}}
         </ion-item>       
       
       </ion-list>

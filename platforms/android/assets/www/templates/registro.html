@@ -3,7 +3,7 @@
   <ion-content>
 
   <form ng-submit="agregar()">
-    <div class="list">
+    <div class="list list-inset">
 
 				<label class="item item-input item-floating-label">
 					<span class="input-label">Nombre:</span>
@@ -29,7 +29,7 @@
 
 			</div>
 
-		<div class="item item-text-wrap">{{"Elija o saque una foto de la Tienda para su registro:"}}
+		<div class="item item-text-wrap">{{"Foto de la Tienda:"}}
 
 			<div class="row">
 
@@ -38,25 +38,28 @@
 				</div>
 
 				<div class="col">
-				<button type="button" ng-click="choosePicture()" class="button icon-left button-assertive button-block ion-images">Galeria</button>
+				<button type="button" ng-click="choosePicture()" class="button icon-left button-royal button-block ion-images">Galeria</button>
 				</div>
 			</div>
 		</div>
-		<div class="item item-text-wrap">{{"Necesitamos su ubicación, no olvide presionar el boton:"}}
+		<div class="item item-text-wrap">{{"Ubicacion:"}}
 
 				<div class="col">
-				<button type="button" ng-click="getPosition()" class="button icon-left button-calm button-block ion-location">ubicación</button>
+				<button type="button" ng-click="getPosition()" class="button icon-left button-calm button-block ion-location">Presioname!</button>
 				</div>
 
 		</div>
+			<div>
 
 			<div class="padding" ng-show="cliente.photo">
 				<img class="full-image" ng-src="{{ cliente.photo }}" alt="photo">
 			</div>
 
+			</div>
+
 	
 			<div class="padding">
-				<button type="submit" class="button button-calm button-block">Guardar</button>
+				<button type="submit" class="button button-positive button-full">Guardar</button>
 			</div>
 
 		</form>

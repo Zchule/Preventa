@@ -15,7 +15,8 @@ CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state
   $scope.agregar = function() {
 
       if($scope.isNew){
-        //$scope.cliente.photo='img/ionic.png';
+        
+        $scope.cliente.photo='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
