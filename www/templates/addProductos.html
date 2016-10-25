@@ -1,0 +1,39 @@
+<ion-view view-title ="PRODUCTOS">
+
+<ion-nav-buttons side="right">
+    <button ng-click="newProducto()" class="button icon ion-plus-circled"></button>
+  </ion-nav-buttons>
+
+<ion-content>
+
+    <div class="card" ng-show="Productos.length == 0">
+      <div class="item item-text-wrap">
+        No hay nada en la lista, agrega un Producto nuevo porfavor!!
+      </div>
+    </div>
+
+
+<div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Buscar" ng-model="Productos.nombre">
+      </label>
+    </div>
+
+<ion-list>
+    
+      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left"  ng-repeat="producto in productos | filter: {nombre: productos.nombre}" type="item-text-wrap" href="#/app/productos/{{nombre.productos}}">
+        <img ng-src="{{producto.photo}}" alt ="">
+        <h2>{{producto.codigo}}</h2>
+        <h2>{{producto.nombre}}</h2>
+        <p>{{producto.cantidad}}</p>
+        <p>{{producto.precio}}</p>
+        <ion-option-button ng-click="deleteProducto( $index )" class="button-calm">
+          Delete
+        </ion-option-button>
+        
+       
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

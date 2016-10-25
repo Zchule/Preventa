@@ -16,7 +16,7 @@ CTRLS.controller('ProductosCtrl', function($scope, Productos, $ionicModal, $ioni
   });
 
 
-    $scope.productos = Productos;
+    $scope.productos = Productos.all();
 
     $scope.productos.$loaded().then(function (todo) {
       $ionicLoading.hide();

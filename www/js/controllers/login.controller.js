@@ -1,71 +1,103 @@
 CTRLS.controller('LoginCtrl', function($scope, $rootScope, Users, $rootScope, $stateParams, $state, $ionicPopup){
 	
-	$scope.data = {};
-	//scope: $scope
+	$scope.data = {}; //scope: $scope
 	$scope.doLogin = doLogin;
 	$scope.salir = salir;
 
 	$scope.users = [];
 	$scope.users = Users.all();
 
-	console.log($scope.users);
-	console.log($scope.users[0]);
-
-	/*$scope.boton = function(){
-
-		for (var i = 0 ; i < $scope.users.length; i++) {
-
-			console.log(" users: " + $scope.users[i].nombre);
-
-		}
-
-		console.log($scope.users.length);
-		console.log($scope.users[0]);
-		console.log($scope.users[0].nombre);
-
-	}*/
-
-	//$scope.menus=[];
-	// $scope.menus = [
- //    {title:"Preventa", ref :["#/app/registro", "#/app/clientes", "#/app/productos", "#/app/loginCliente"], icon:["icon ion-person-add", "icon ion-ios-people", "icon ion-ios-list", "icon ion-ios-cart" ], titulo: ["Registro", "Clientes","Productos","Hacer pedido"]}, 
- //    {title:"Distribuidor", ref :["#/app/productos", "#/app/loginCliente"], icon:["#/app/mapas", "icon ion-ios-people", "icon ion-map"], titulo: ["Productos","Mapas"]},
- //    /*Admin*/{[
- //    	{ref: "#/app/registro", icon: "icon ion-person-add", titulo:"Registro"},
- //    	{ref: "#/app/clientes", icon: "icon ion-ios-people", titulo:"Clientes"}
- //    	]}
- //    ];
-  
 	$scope.menus = 
 	[[
+    	{ref: "#/app/clientes/", icon: "icon ion-ios-people", titulo:"Lista de Clientes P"},
     	{ref: "#/app/registro", icon: "icon ion-person-add", titulo:"Registro"},
-    	{ref: "#/app/clientes", icon: "icon ion-ios-people", titulo:"Lista de Clientes P"},
     	{ref: "#/app/productos", icon: "icon ion-ios-list", titulo: "Productos"},
     	{ref: "#/app/loginCliente", icon: "icon ion-ios-cart", titulo: "Hacer pedido"},
     	{ref: "#/app/listaPedidos", icon: "icon ion-ios-list", titulo: "Lista de Pedidos"}  
     	
     ],
     [
-    	{ref: "#/app/clientes", icon: "icon ion-ios-people", titulo:"Lista de Clientes D"},
+    	{ref: "#/app/clientes/", icon: "icon ion-ios-people", titulo:"Lista de Clientes D"},
     	{ref: "#/app/listaEntrega", icon: "icon ion-ios-list", titulo: "Lista de Entrega"},
     	{ref: "#/app/mapas", icon: "icon ion-map", titulo: "Mapa de Entrega"} 
     ],
     [
-    	{ref: "#/app/clientes", icon: "icon ion-ios-people", titulo:"Lista de Clientes A"},
+    	{ref: "#/app/clientes/", icon: "icon ion-ios-people", titulo:"Lista de Clientes A"},
     	{ref: "#/app/users", icon: "icon ion-ios-people", titulo: "Lista de Usuarios"},
     	{ref: "#/app/productos", icon: "icon ion-ios-list", titulo: "Lista de Productos"}
     	 
     ]];
 
-  console.log($rootScope.menus);
+  //console.log($rootScope.menus);
+  /*
+  $scope.boton = function(){
+
+		for (var i = 0 ; i < $scope.users.length; i++) {
+
+		
+		console.log("users: " + $scope.users[i].usuario);
+
+		console.log($scope.users.length);
+		console.log($scope.users[i]);
+		console.log($scope.users[i].usuario);
+		console.log($scope.users[i].contrasenia);
+
+		}
+
+
+	}*/
+	$scope.mySelect = 'Administrador';
+	$scope.showSelectValue = function(mySelect) {
+	console.log(mySelect);
+    if(mySelect == 'Preventa'){
+    	$rootScope.menu = $scope.menus[0];
+
+    	console.log($rootScope.menu);
+    }else{
+    	if(mySelect == 'Distribuidor'){
+    		$rootScope.menu = $scope.menus[1];
+    	}else
+    	{
+    		if(mySelect == 'Administrador'){
+    		$rootScope.menu = $scope.menus[2];
+    		}
+    	}
+    }
+}
+	$scope.loginUser="";
 
 	function doLogin(){
-		if($scope.data.username == "zule" && $scope.data.password == "123"){
+		var filtraPorNombreUsuario = function(user){
+			//console.log(user.usuario)
+			//console.log($scope.data.username)
+			if(user.usuario == $scope.data.username){
+				return user;
+			}
+		}
 
-				console.log("zule admin");
-				$state.go('app.clientes', {User: $scope.data.username});
+		$scope.currentUser = $scope.users.filter(filtraPorNombreUsuario);
+		$scope.logedUser = $scope.currentUser[0];
+		console.log($scope.currentUser);
+		console.log($scope.logedUser);
 
-				// $scope.menus = $scope.menus[2];
-				console.log($rootScope.menus);
+		if($scope.currentUser[0].contrasenia == $scope.data.password){
+				var rol = $scope.currentUser[0].rol; //console.log(rol);
+				$scope.showSelectValue(rol);
+
+				$scope.loginUser= $scope.logedUser.usuario;
+				
+				$state.go('app.clientes', {User:$scope.loginUser});
+
+				/*console.log($rootScope.menu);
+
+				var x = $rootScope.menu[0];
+    			console.log(x);
+    			console.log(x.ref);
+    			x.ref = x.ref+$scope.loginUser;
+
+    			$rootScope.menu[0]= x;*/
+
+    			$rootScope.usuarioRol = $scope.loginUser;
 
 				$scope.data.username="";
 				$scope.data.password="";
@@ -73,66 +105,12 @@ CTRLS.controller('LoginCtrl', function($scope, $rootScope, Users, $rootScope, $s
 			
 		}else
 		{	
-			if($scope.data.username == "a" && $scope.data.password == "123"){
-
-				console.log("a preventista");
-				$state.go('app.productos');
-
-				$scope.data.username="";
-				 $scope.data.password="";
-
-			
-			}else
-			{
-				if($scope.data.username == "b" && $scope.data.password == "123"){
-
-				console.log("b distribuidor");
-				$state.go('app.registro');
-
-				$scope.data.username="";
-				 $scope.data.password="";
-
-			
-			}else
-				{
-
-				var confirmPopup = $ionicPopup.confirm({
+			var confirmPopup = $ionicPopup.confirm({
      			title: 'Los datos son invalidos',
      			template: 'Revise los datos ingresados'
 				});
-
-				}
-			}
+			
 		}
-	}
-
-	$scope.mySelect = 'Administrador';
-	$scope.showSelectValue = function(mySelect) {
-    console.log(mySelect);
-    if(mySelect == 'Preventa'){
-    	console.log("bienvendido Preventa");
-    	var i = 0;
-    	$rootScope.menu = $scope.menus[i];
-    	console.log($rootScope.menu);
-    }else{
-    	if(mySelect == 'Distribuidor'){
-    		console.log('bienvendido Distribuidor');
-    		var i = 1;
-    		$rootScope.menu = $scope.menus[i];
-    		console.log($rootScope.menu);
-
-    	}else
-    	{
-    		if(mySelect == 'Administrador'){
-    		console.log('bienvendido Admin');
-    		var i = 2;
-    		$rootScope.menu = $scope.menus[i];
-    		console.log($rootScope.menu);
-
-    		}
-    	}
-    }
-
 	}
 
 	function salir(){

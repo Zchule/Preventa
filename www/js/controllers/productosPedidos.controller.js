@@ -1,4 +1,4 @@
-CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, $stateParams,Productos, Pedidos, $ionicModal, $timeout, $state, $ionicPopup, $ionicActionSheet, $ionicLoading){
+CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootScope, Clientes ,$location, $stateParams,Productos, Pedidos, $ionicModal, $timeout, $state, $ionicPopup, $ionicActionSheet, $ionicLoading){
 
   $scope.showOptions=showOptions;
 
@@ -23,16 +23,42 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
 
   // Perform the login action when the user submits the login form
 
-  console.log($rootScope.menu);
+  //console.log($rootScope.menu);
+
+  $scope.clientes = [];
+  $scope.clientes = Clientes.all();
+
+  //console.log($scope.clientes);
+  //Identificar al cliente
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+
+      var filtraPorCodigo = function(cliente){
+      //console.log(user.usuario)
+      //console.log($scope.data.username)
+      if(cliente.codigo == $scope.loginData.username){
+        return cliente;
+      }
+
+    }
+
+    $scope.currentCliente = $scope.clientes.filter(filtraPorCodigo);
+    $scope.logedCliente = $scope.currentCliente[0];
+    console.log($scope.currentCliente);
+    console.log($scope.logedCliente);
+
+    //console.log('Doing login', $scope.loginData);
+
+    //$scope.currentUser[0].contrasenia == $scope.data.password
+    if($scope.currentCliente[0].password == $scope.loginData.password){
 
 
-    if($scope.loginData.username == "b" && $scope.loginData.password == "123"){
+        $scope.loginCliente= $scope.logedCliente.codigo;
 
-        $state.go('app.productosPedidos',{cliente: $scope.loginData.username});
+        $ionicLoading.show({
+            template: 'Signing Up...'
+        })
 
-        console.log($rootScope.menu);
+        $state.go('app.productosPedidos',{cliente: $scope.loginCliente});
 
         $scope.loginData.username="";
          $scope.loginData.password="";
@@ -40,12 +66,14 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
       
     }else
     {
+
+      $ionicLoading.hide();
       var confirmPopup = $ionicPopup.confirm({
           title: 'Los datos son invalidos',
           template: 'Revise los datos ingresados'
       });
 
-      $scope.modal.show();
+      //$scope.modal.show();
     }
 
     // Simulate a login delay. Remove this and replace with your login
@@ -61,12 +89,11 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
     template: 'Cargando...'
   });
 
-    $scope.productos = Productos;
+    $scope.productos = Productos.all();
 
     $scope.productos.$loaded().then(function (todo) {
       $ionicLoading.hide();
   });
-
 
   $ionicModal.fromTemplateUrl('templates/producto-pedido-modal.html', {
     scope: $scope
@@ -86,10 +113,18 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
     $scope.modal2.show();
   }
 
+  $scope.pedidos= {};
   $scope.pedidos = Pedidos;
   $scope.pedido = {};
 
-  function closeModal(producto, pedido){
+  /*$scope.pedido={
+    nombre:"juan",
+    codigo: 123,
+    listaProductos:[{name:"papas", cantidad:10}, {name:"papas", cantidad:10}, {name:"papas", cantidad:10}]
+
+  }*/
+
+  function closeModal(){
    $scope.producto.precio = producto.precio;
     $scope.pedido.total = parseInt($scope.producto.precio*pedido.cantProducto);
     console.log($scope.pedido.total);
@@ -138,13 +173,24 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $rootScope, $location, 
   }
 
   function hacerPedido(index){
-    //agarrar idpreventa, id cliente, 
+
+    var ahora =  new Date().getTime();
+     console.log(ahora);
+
+     console.log($scope.producto.Children)
+
+    // id del preventista
+    var userPreventa = $rootScope.usuarioRol;
+    console.log(userPreventa);
+    //muestra el codigo del cliente
+    console.log($stateParams.cliente); 
 
     //agarrar el idproducto iijoprecio, la cantidad de pedido
-
                 $scope.producto = $scope.productos[index];
                 $scope.modal2.show();
-                console.log($stateParams.cliente); 
+                console.log($scope.producto.codigo);
+
+
                 $scope.pedido.cantProducto = 1;
                 //$scope.modal.hide();  
                 //return $scope.productos; 

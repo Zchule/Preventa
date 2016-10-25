@@ -19,6 +19,10 @@ SERVICES.factory('Pedidos', function($firebaseArray, $firebaseObject) {
       }
     };
 
-  //var bdbRef = new Firebase("https://bddproyecto.firebaseio.com/pedidos");
+    // 'https://bddproyecto.firebaseio.com/pedidos/$uid
+    ///users/$uid/groups/$group_id
+
+  //var Ref = new Firebase("https://bddproyecto.firebaseio.com/pedidos");
+  //Ref.limitToLast ( 20 );
   //return $firebaseArray(bdbRef);
 });

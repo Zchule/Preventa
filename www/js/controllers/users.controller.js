@@ -75,6 +75,7 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
 
        $scope.user.photo='img/ionic.png';
 
+
                 /** Se guadar en firebase */
                 $scope.users.$add({
 
@@ -83,15 +84,21 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
                   "apMat":$scope.user.apMat,
                   "photo": $scope.user.photo,
                   "CI":$scope.user.CI,
-                  "Direccion":$scope.user.direccion
+                  "Direccion":$scope.user.direccion,
+                  //"lista": [{pedido:"ggg", cantidad: 23}]
 
-                });
+                })
+
+                .then(function() {
+            alert('dato almacenado correctamente');
+        })
+                .catch(function(error) {
+            console.log('detectado un error', error);
+        });
 
                 $scope.modal.hide();
                 return $scope.user;
-                
               }
-
 
           }
 
@@ -131,10 +138,7 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
 
 
   function verUser(index){
-    //$scope.visibility=false;
-    var inputs =document.getElementsByTagName("input");
-    console.log(inputs);
-
+    
     $scope.isNew = false;
     $scope.user = $scope.users[index];
 
@@ -142,7 +146,7 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
   }
 
 
-	function showOptions( indexCliente ){    
+	function showOptions( indexUser ){   
     $ionicActionSheet.show({
       buttons: [
         { text: '<i class="icon ion-android-contact"></i> ver' },
@@ -157,6 +161,7 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
       },
       buttonClicked: function(indexButton){
         if(indexButton == 0){
+          console.log(indexUser); 
           $scope.verUser( indexUser );
         }else
         {

@@ -4,7 +4,7 @@ CTRLS.controller('MapasCtrl', function($scope, $cordovaGeolocation, $ionicPlatfo
 var markersData=[{
   lat: 40.6386333,
   lng: -8.745,
-  nombreTienda: "Parque de Campismo Praia da Barra",
+  nombreTienda: "punto 1",
   nombreCliente: "Maria",
   cel: 6095430
 
@@ -12,14 +12,14 @@ var markersData=[{
 {
   lat: 40.59955,
   lng: -8.7498167,
-  nombreTienda: "Parque de Campismo da Costa Nova",
+  nombreTienda: "Punto2",
   nombreCliente: "Marcelo",
   cel: 7095430
 },
 {
   lat: 40.6247167,
   lng: -8.7129167,
-  nombreTienda:"Parque de Campismo da Gafanha da Nazaré",
+  nombreTienda:"Punto 3",
   nombreCliente: "Maria Elena",
   cel: 8095430
 }
@@ -87,6 +87,31 @@ function showMap(coords){
     center: {lat: coords.latitude, lng: coords.longitude},
     zoom:8
   });
+
+  var latlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+
+    var nombreCliente="yo";
+    var nombreTienda="mi position";
+    var celular= 7899;
+
+  createMarker(latlng, nombreTienda, nombreCliente, celular);
+
+  var flightPlanCoordinates = [
+  {lat: 40.6386333, lng: -8.745},
+  {lat: 40.6247167, lng: -8.7129167},
+  {lat: 40.59955,lng: -8.7498167},
+  {lat: coords.latitude, lng: coords.longitude}
+  
+  ];
+
+  var flightPlath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight:2
+  });
+  flightPlath.setMap(map);
 }
 
 $ionicPlatform.ready(function(){

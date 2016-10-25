@@ -11,8 +11,8 @@
 	<ion-content>
 			<center>
 
-		<div class="padding" ng-show="producto.face">
-				<img class="full-image" type="center" ng-src="{{ producto.face }}" style="width: 100px; height: 100px">
+		<div class="padding" ng-show="producto.photo">
+				<img class="full-image" type="center" ng-src="{{ producto.photo }}" style="width: 100px; height: 100px">
 			</div>
 			</center>
 		<form ng-submit="hacerPedido()">
@@ -20,8 +20,14 @@
 			<div class="list">
 				
 				<label class="item item-input">
+					<span class="input-label">Codigo:</span>
+					<p>{{producto.codigo}}</p>
+
+				</label>
+
+				<label class="item item-input">
 					<span class="input-label">Nombre:</span>
-					<p>{{producto.name}}</p>
+					<p>{{producto.nombre}}</p>
 
 				</label>
 

@@ -87,6 +87,15 @@ APP.run(function($ionicPlatform) {
       }
     }
   })
+  .state('app.addProductos', {
+      url: '/addProductos',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/addProductos.html',
+          controller: 'addProductosCtrl'
+        }
+      }
+    })
   .state('app.productos', {
       url: '/productos',
       views: {
