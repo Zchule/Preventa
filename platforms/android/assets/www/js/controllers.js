@@ -11,3 +11,6 @@ CTRLS.controller('PlaylistsCtrl', function($scope) {
 
 CTRLS.controller('PlaylistCtrl', function($scope, $stateParams) {
 });
+
+CTRLS.controller('listaEntregaCtrl', function($scope){
+});

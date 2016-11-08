@@ -12,8 +12,8 @@
 
 		<center>
 
-			<div class="padding" ng-show="producto.face">
-				<img class="full-image" ng-src="{{ producto.face }}" style="width: 100px; height: 100px">
+			<div class="padding" ng-show="producto.photo">
+				<img class="full-image" ng-src="{{ producto.photo }}" style="width: 100px; height: 100px">
 			</div>
 		</center>
 		
@@ -22,13 +22,22 @@
 			<div class="list">
 				
 				<label class="item item-input">
+					<span class="input-label">Codigo:</span>
+					<p>{{producto.codigo}}</p>
+				</label>
+
+				<label class="item item-input">
 					<span class="input-label">Nombre:</span>
-					<p>{{producto.name}}</p>
+					<p>{{producto.nombre}}</p>
 				</label>
 
 				<label class="item item-input">
 					<span class="input-label">Cantidad:</span>
 					<p>{{producto.cantidad}}</p>
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Cantidad:</span>
+					<p>{{producto.precio}}</p>
 				</label>
 
 		</form>

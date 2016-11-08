@@ -1,7 +1,13 @@
 <ion-view title="Mapa">
 	<ion-content scroll="false">
 		<div data-tap-disable="true"></div>
-		<div>{{coords.latitude}},{{coords.longitude}}</div>
 		<div id="map"></div>
+
+		<div id="right-panel">
+		<h5>Mi ubicacion:</h5>
+		<span>{{coords.latitude}}</span>
+		<span>{{coords.longitude}}</span>
+		<p>Total Distance: <span id="total"></span></p>
+		</div>
 	</ion-content>
 </ion-view>

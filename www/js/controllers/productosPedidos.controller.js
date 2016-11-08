@@ -1,35 +1,17 @@
 CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootScope, Clientes ,$location, $stateParams,Productos, Pedidos, $ionicModal, $timeout, $state, $ionicPopup, $ionicActionSheet, $ionicLoading){
 
   $scope.showOptions=showOptions;
-
   $scope.loginData = {};
 
-  // Create the login modal that we will use later
-  /*$ionicModal.fromTemplateUrl('templates/loginCliente.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };*/
-
-  // Perform the login action when the user submits the login form
-
-  //console.log($rootScope.menu);
-
-  $scope.clientes = [];
+  $scope.clientes =[];
   $scope.clientes = Clientes.all();
 
-  //console.log($scope.clientes);
-  //Identificar al cliente
+  $scope.pedidos=[];
+  $scope.pedidos = Pedidos.all();
+ 
+  $scope.productos =[];
+  $scope.productos = Productos.all();
+
   $scope.doLogin = function() {
 
       var filtraPorCodigo = function(cliente){
@@ -44,59 +26,43 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
     $scope.currentCliente = $scope.clientes.filter(filtraPorCodigo);
     $scope.logedCliente = $scope.currentCliente[0];
     console.log($scope.currentCliente);
-    console.log($scope.logedCliente);
+    console.log($scope.logedCliente); //datos del cliente
 
     //console.log('Doing login', $scope.loginData);
 
     //$scope.currentUser[0].contrasenia == $scope.data.password
     if($scope.currentCliente[0].password == $scope.loginData.password){
 
-
         $scope.loginCliente= $scope.logedCliente.codigo;
 
-        $ionicLoading.show({
-            template: 'Signing Up...'
-        })
-
         $state.go('app.productosPedidos',{cliente: $scope.loginCliente});
-
+       
         $scope.loginData.username="";
-         $scope.loginData.password="";
-
+        $scope.loginData.password="";
       
     }else
     {
-
-      $ionicLoading.hide();
       var confirmPopup = $ionicPopup.confirm({
           title: 'Los datos son invalidos',
           template: 'Revise los datos ingresados'
       });
-
       //$scope.modal.show();
     }
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    /*$timeout(function() {
-      $scope.closeLogin();
-    }, 1000);*/
   };
-
+  $scope.pedido = {};
   $scope.producto = {};
 
   $ionicLoading.show({
     template: 'Cargando...'
   });
 
-    $scope.productos = Productos.all();
-
     $scope.productos.$loaded().then(function (todo) {
       $ionicLoading.hide();
   });
 
   $ionicModal.fromTemplateUrl('templates/producto-pedido-modal.html', {
-    scope: $scope
+    scope: $scope,
+    animation: 'slide-in-up'
   })
 
   .then(function(modal2){
@@ -105,18 +71,12 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
 
   $scope.openModal = openModal;
   $scope.closeModal = closeModal;
-  $scope.hacerPedido=hacerPedido;
-
+  
   function openModal(){
     $scope.isNew = true;
     $scope.pedido = {};
     $scope.modal2.show();
   }
-
-  $scope.pedidos= {};
-  $scope.pedidos = Pedidos;
-  $scope.pedido = {};
-
   /*$scope.pedido={
     nombre:"juan",
     codigo: 123,
@@ -125,33 +85,11 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
   }*/
 
   function closeModal(){
-   $scope.producto.precio = producto.precio;
-    $scope.pedido.total = parseInt($scope.producto.precio*pedido.cantProducto);
-    console.log($scope.pedido.total);
-
-    /** Se guadar en firebase */
-                $scope.pedidos.$add({
-                  
-                  "id": producto.$id,
-                  "foto": producto.face,
-                  "precio":producto.precio,
-                  "cantidadProducto":pedido.cantProducto,
-                  "total": $scope.pedido.total
-                });
-
     $scope.modal2.hide();
-    $state.go("productos");
-    //$location.url('app.productosPedidos');
-  // $scope.$apply();
-   //$route.reload();
   }
 
-  $scope.Salir=Salir;
-
-  function Salir(){
-
+  $scope.Salir= function(){
     $scope.modal2.hide();
-
   }
 
     function showOptions(indexProducto){    
@@ -162,7 +100,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
       //destructiveText: "<i class='icon ion-trash-b'></i> Delete",
       cancelText: 'CANCEL',
       titleText: "OPCIONES",
-      
+       
       buttonClicked: function(indexButton){
         if(indexButton == 0){
           $scope.hacerPedido( indexProducto );
@@ -171,29 +109,45 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
       }
     });
   }
+  $scope.hacerPedido = function(index){
 
-  function hacerPedido(index){
-
-    var ahora =  new Date().getTime();
-     console.log(ahora);
-
-     console.log($scope.producto.Children)
-
-    // id del preventista
-    var userPreventa = $rootScope.usuarioRol;
-    console.log(userPreventa);
-    //muestra el codigo del cliente
-    console.log($stateParams.cliente); 
-
-    //agarrar el idproducto iijoprecio, la cantidad de pedido
                 $scope.producto = $scope.productos[index];
                 $scope.modal2.show();
-                console.log($scope.producto.codigo);
-
+                $scope.productoID = $scope.producto.$id;
+                console.log($scope.productoID);
+                console.log($scope.producto.precio);
 
                 $scope.pedido.cantProducto = 1;
-                //$scope.modal.hide();  
-                //return $scope.productos; 
-
               }
+
+$scope.guardarPedido=function(cantProducto){
+  // id del preventista
+    var userID = $rootScope.usuarioID;
+    console.log(userID); // id de preventista
+    var userPreventa = $rootScope.usuarioRol;
+    console.log(userPreventa); //rol del preventista
+    //muestra el codigo del cliente
+    console.log($stateParams.cliente); 
+    var clienteID = $stateParams.cliente;
+
+    console.log($scope.productoID);
+
+
+    $scope.pedido.cantProducto = cantProducto;
+    console.log($scope.pedido.cantProducto);
+    console.log($scope.producto.precio);
+    $scope.pedido.total = parseInt($scope.pedido.cantProducto* $scope.producto.precio);
+    console.log($scope.pedido.total);
+
+     /** Se guadar en firebase */
+                $scope.pedidos.$add({
+                  "idproducto": $scope.producto.codigo,
+                  "idPreventista": userID,
+                  "idCliente": clienteID,
+                  "cantidadProducto": $scope.pedido.cantProducto,
+                  "total": $scope.pedido.total
+                });
+    $scope.modal2.hide();
+    $state.go("app.productosPedidos");
+  };
 });

@@ -1,22 +1,21 @@
 CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state, $cordovaGeolocation, $cordovaCamera) {
 
   $scope.saveCliente = saveCliente;
-  
-  $scope.isNew = true;
-  $scope.cliente = {};
-
-  $scope.clientes = Clientes;
-  $scope.listCanSwipe = true;
 
   $scope.takePicture = takePicture;
   $scope.choosePicture= choosePicture;
   $scope.getPosition = getPosition;
 
-  $scope.agregar = function() {
+  $scope.isNew = true;
+  $scope.cliente = {};
+
+  $scope.clientes = Clientes.all();
+
+  $scope.agregarCliente = function() {
 
       if($scope.isNew){
-        //$scope.cliente.photo='img/ionic.png';
 
+       //$scope.cliente.photo='img/ionic.png';
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
 
@@ -30,17 +29,13 @@ CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state
                   "longitude":$scope.longitude
 
                 });
+
                 $scope.cliente ={};
                 $state.go('app.clientes');
-                return $scope.cliente;
-
-
+                return $scope.cliente;           
               }
               //$state.go('app.clientes');
-
           }
-
-
 
 	function saveCliente(){
     if($scope.isNew){

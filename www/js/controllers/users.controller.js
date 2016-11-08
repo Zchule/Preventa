@@ -88,7 +88,6 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
                   //"lista": [{pedido:"ggg", cantidad: 23}]
 
                 })
-
                 .then(function() {
             alert('dato almacenado correctamente');
         })

@@ -1,6 +1,16 @@
 <ion-view view-title="LISTA DE PRODUCTOS">
 
+<ion-nav-buttons side="right">
+    <button ng-click="showModal()" class="button icon ion-person-add"></button>
+  </ion-nav-buttons>
+
 <ion-content>
+
+<div class="card" ng-show="productos.length == 0">
+      <div class="item item-text-wrap">
+        No hay nada en la lista, agrega un producto nuevo porfavor!!
+      </div>
+    </div>
 
 <div class="list list-inset">
       <label class="item item-input">

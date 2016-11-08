@@ -82,6 +82,7 @@ CTRLS.controller('LoginCtrl', function($scope, $rootScope, Users, $rootScope, $s
 
 		if($scope.currentUser[0].contrasenia == $scope.data.password){
 				var rol = $scope.currentUser[0].rol; //console.log(rol);
+
 				$scope.showSelectValue(rol);
 
 				$scope.loginUser= $scope.logedUser.usuario;
@@ -97,7 +98,9 @@ CTRLS.controller('LoginCtrl', function($scope, $rootScope, Users, $rootScope, $s
 
     			$rootScope.menu[0]= x;*/
 
-    			$rootScope.usuarioRol = $scope.loginUser;
+    			$rootScope.usuarioRol = rol;
+    			$rootScope.usuarioID = $scope.currentUser[0].$id;
+    			console.log($rootScope.usuarioID);
 
 				$scope.data.username="";
 				$scope.data.password="";

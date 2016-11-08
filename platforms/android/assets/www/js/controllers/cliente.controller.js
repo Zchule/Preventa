@@ -83,7 +83,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     $scope.visibility=true;
       if($scope.isNew){
 
-       //$scope.cliente.photo='img/ionic.png';
+       $scope.cliente.photo='img/ionic.png';
 
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
