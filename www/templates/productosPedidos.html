@@ -12,9 +12,9 @@
       <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left" ng-repeat="producto in productos | filter: {nombre: nombre.productos}" type="item-text-wrap">
         <img ng-src="{{producto.photo}}">
         <h2 style='font-family: "MenschMenschRegular"'>{{producto.nombre}}</h2>
-        <p> <n style= 'font-family: "wmMensch"''> codigo: </n> {{producto.codigo}} </p>
-        <p> <n style= 'font-family: "wmMensch"''>Precio unidad:</n>{{producto.precio}} bs.</p>
-        <p> <n style= 'font-family: "wmMensch"''> Cantidad: </n> {{producto.cantidad}} unidades </p>
+        <p> <n style= 'font-family: "wmMensch"'> codigo: </n> {{producto.codigo}} </p>
+        <p> <n style= 'font-family: "wmMensch"'>Precio unidad:</n>{{producto.precio}} bs.</p>
+        <p> <n style= 'font-family: "wmMensch"'> Cantidad: </n> {{producto.cantidad}} unidades </p>
         
       </ion-item>
     </ion-list>

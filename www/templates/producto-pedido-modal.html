@@ -15,7 +15,7 @@
 				<img class="full-image" type="center" ng-src="{{ producto.photo }}" style="width: 100px; height: 100px">
 			</div>
 			</center>
-		<form ng-submit="hacerPedido()">
+		<form ng-submit="guardarPedido(pedido.cantProducto)">
 			
 			<div class="list">
 				
@@ -60,7 +60,7 @@
 
 			
 			<div class="padding">
-				<button type="submit" class="button button-positive button-block" ng-click="guardarPedido(pedido.cantProducto)" ng-click="closeModal()">Hacer Pedido</button>
+				<button type="submit" class="button button-positive button-block" ng-click="closeModal()">Hacer Pedido</button>
 			</div>
 
 		</form>

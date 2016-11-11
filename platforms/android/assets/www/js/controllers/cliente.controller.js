@@ -119,6 +119,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
                   "photo": $scope.cliente.photo,
                   "CI": $scope.cliente.CI,
                   "nombreTienda": $scope.cliente.nombreTienda,
+                  //"lista": [1,2,3]
                   //latitude: $scope.latitude,
                   //longitude: $scope.longitude
                 });

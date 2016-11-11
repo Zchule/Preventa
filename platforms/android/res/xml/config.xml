@@ -44,7 +44,7 @@
     <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
     <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png" />
     <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
-    <name>Preventa</name>
+    <name>appEasyD</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>
