@@ -29,10 +29,9 @@ CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state
                   "longitude":$scope.longitude
 
                 });
-
                 $scope.cliente ={};
-                $state.go('app.clientes');
-                return $scope.cliente;           
+                return $scope.cliente; 
+                $state.go('app.clientes');           
               }
               //$state.go('app.clientes');
           }
@@ -100,9 +99,7 @@ CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state
       console.log( position );
       $scope.latitude = position.coords.latitude;
       $scope.longitude = position.coords.longitude;
-
       console.log($scope.latitude);
-      
       console.log($scope.longitude);
 
 

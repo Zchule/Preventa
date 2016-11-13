@@ -100,16 +100,8 @@ $scope.guardarPedido=function(cantProducto){
     //muestra el codigo del cliente
     
     $scope.clienteID = $rootScope.clienteID;
-    console.log($scope.clienteID); 
-
-    console.log($scope.productoID);
     $scope.pedido.cantProducto = cantProducto;
-    console.log($scope.pedido.cantProducto);
-    console.log($scope.producto.precio);
     $scope.pedido.total = parseInt($scope.pedido.cantProducto* $scope.producto.precio);
-    $scope.keys = [];
-
-    console.log($scope.pedido.total);
 
      /** Se guadar en firebddddddfase */
                 $scope.pedidos.$add({
@@ -121,9 +113,6 @@ $scope.guardarPedido=function(cantProducto){
                 }).then(function(firebaseRef) {
                   var id = firebaseRef.key();
                     console.log(id);
-                    var c=0;
-                    $scope.keys[c]= id;
-                    c++;
                     var confirmPopup = $ionicPopup.alert({
                       title: 'EXIT',
                       template: 'su pedido fue ingresado'
@@ -131,24 +120,32 @@ $scope.guardarPedido=function(cantProducto){
                   
                   });
 
-    console.log($scope.keys);
     $scope.pedido.total="";
     $scope.modal.hide();
     $state.go("app.productosPedidos");
   };
+
+  
+  //filtrar po codigo de cliente
+  $scope.pedidos.$loaded().then(function (todo) {
+
+  });
+
+  Pedidos.all().forEach(function (element){
+    console.dir(element);
+  });
 /*
-  function filtrarPedidos(){
-    var pedidosVendidos = [];
-    var j =0;
-    var  lista = $scope.pedidos;
-    for (var i = 0; i < lista.length; i++) {
-      if (lista[i].idPreventista == userID) {
-        pedidos[j] = lista[i];
-        j++;
-      }
+  var filtrarPedido = function(idCliente){
+        var pedidosVendidos=[];
+        var j=0;
+       for (var i = 0; i < listaPedido.length; i++) {
+                if(listaPedido[i].idCliente == idCliente){
+                  listPedidos[j]=listaPedido[i];
+                  j++;
+                }
+            }
+        return pedidosVendidos;
     }
-    return pedidosVendidos;
-  }
 
 
   $scope.listPedido= function(listPedidos, clienteID){

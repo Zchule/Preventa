@@ -74,8 +74,6 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
       if($scope.isNew){
 
        $scope.user.photo='img/ionic.png';
-
-
                 /** Se guadar en firebase */
                 $scope.users.$add({
 
@@ -89,11 +87,13 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
 
                 })
                 .then(function() {
-            alert('dato almacenado correctamente');
-        })
+                  var confirmPopup = $ionicPopup.alert({
+                      title: 'GUARDADO',
+                      template: 'Usuario Agregado'
+                       });                })
                 .catch(function(error) {
-            console.log('detectado un error', error);
-        });
+                    console.log('detectado un error', error);
+             });
 
                 $scope.modal.hide();
                 return $scope.user;

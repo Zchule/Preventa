@@ -83,8 +83,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     $scope.visibility=true;
       if($scope.isNew){
 
-       $scope.cliente.photo='img/ionic.png';
-
+       //$scope.cliente.photo='img/ionic.png';
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
 
@@ -98,10 +97,8 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
                   "longitude":$scope.longitude
 
                 });
-
                 $scope.modal.hide();
                 return $scope.cliente;
-                
               }
 
 
@@ -207,8 +204,6 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     });
   }
   function choosePicture(){
-    console.log("yes!!");
-
     var options = {
       quality: 100,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -224,6 +219,8 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 
     $cordovaCamera.getPicture(options).then(function(imgData){
     $scope.cliente.photo = "data:image/jpeg;base64," + imgData;
+    },function(err){
+      console.log(err);
     });
   }
 
@@ -244,6 +241,8 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     $cordovaCamera.getPicture( options )
     .then(function( imgData ){
       $scope.cliente.photo = "data:image/jpeg;base64," + imgData;
+    },function(err){
+      console.log(err);
     });
 
 }
@@ -257,12 +256,16 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 
     $cordovaGeolocation.getCurrentPosition( options )
     .then(function( position ){
-      console.log( position );
+      console.log(position);
       $scope.latitude = position.coords.latitude;
       $scope.longitude = position.coords.longitude;
+
+      var confirmPopup = $ionicPopup.alert({
+                      title: 'AGREGADO',
+                      template: 'su ubicacion fue Agregado'
+                       });
       //$scope.coords=position.coords;  //para agarrar en conjunto
       console.log($scope.latitude);
-      
       console.log($scope.longitude);
 
 
