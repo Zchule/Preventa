@@ -15,11 +15,10 @@
       </label>
     </div>
     
-      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left" ng-repeat="pedido in pedidos | filter: {name: name.pedidos}" type="item-text-wrap">
-        <img ng-src="{{pedido.foto}}">
-        <p>{{pedido.precio}}</p>
-        <p>{{pedido.cantidadProducto}}</p>
-        <p>{{pedido.total}}</p>
+      <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left" ng-repeat="pedido in pedidos" type="item-text-wrap">
+        <img ng-src="{{pedido.photo}}">
+        <p><n>Cantidad Producto: </n> {{pedido.cantidadProducto}}</p>
+        <p> <n>Costo Total: </n> {{pedido.total}}</p>
         
       </ion-item>
 

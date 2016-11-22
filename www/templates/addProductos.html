@@ -1,7 +1,7 @@
 <ion-view view-title ="PRODUCTOS">
 
 <ion-nav-buttons side="right">
-    <button ng-click="newProducto()" class="button icon ion-plus-circled"></button>
+    <button ng-click="openModal()" class="button icon ion-plus-circled"></button>
   </ion-nav-buttons>
 
 <ion-content>
@@ -24,10 +24,10 @@
     
       <ion-item on-hold="showOptions( $index )" class="item-thumbnail-left"  ng-repeat="producto in productos | filter: {nombre: productos.nombre}" type="item-text-wrap" href="#/app/productos/{{nombre.productos}}">
         <img ng-src="{{producto.photo}}" alt ="">
-        <h2>{{producto.codigo}}</h2>
-        <h2>{{producto.nombre}}</h2>
-        <p>{{producto.cantidad}}</p>
-        <p>{{producto.precio}}</p>
+       <h2 style='font-family: "MenschMenschRegular"'>{{producto.nombre}}</h2>
+        <p> <n style= 'font-family: "wmMensch"'> codigo: </n> {{producto.codigo}} </p>
+        <p> <n style= 'font-family: "wmMensch"'>Precio unidad:</n>{{producto.precio}} bs.</p>
+        <p> <n style= 'font-family: "wmMensch"'> Cantidad: </n> {{producto.cantidad}} unidades </p>
         <ion-option-button ng-click="deleteProducto( $index )" class="button-calm">
           Delete
         </ion-option-button>

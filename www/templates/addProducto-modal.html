@@ -14,23 +14,27 @@
     		<div class="list list-inset">
 
     			<label class="item item-input item-floating-label">
-					<span class="input-label">Codigo:</span>
-					<input type="text" placeholder="Nombre" ng-model="producto.nombre">
+					<span class="input-label">Nombre Producto:</span>
+					<input type="text" placeholder="Nombre del producto" ng-model="producto.nombre">
 				</label>
 
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Nombre:</span>
-					<input type="text" placeholder="Nombre" ng-model="producto.nombre">
-				</label>
-
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Cantidad: </span>
-					<input type="text" placeholder="Apellido Paterno" ng-model="cliente.apPat">
-				</label>
 				<label class="item item-input item-floating-label">
 					<span class="input-label">Precio unitario</span>
-					<input type="text" placeholder="Apellido Materno" ng-model="cliente.apMat">
+					<input type="text" placeholder="Precio unitario" ng-model="producto.precio">
 				</label>
+
+			  <div class="list list-inset">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Tipo de Producto
+                </div>
+                <select>
+                  <option>Pequeño</option>
+                  <option>Mediano</option>
+                  <option selected>Familiar</option>
+                </select>
+              </label>
+            </div>
 
 			</div>
 

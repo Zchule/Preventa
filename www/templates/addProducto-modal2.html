@@ -1,7 +1,7 @@
 <ion-modal-view>
 
 	<ion-header-bar class="bar-positive">
-		<h2 class="title">Empleado</h2>
+		<h2 class="title">Producto</h2>
 		<div class="buttons">
 			<button ng-click="closeModal2()" class="button icon ion-close"></button>
 		</div>
@@ -9,37 +9,40 @@
 
 	<ion-content>
 
-		 <form ng-submit="agregarUser()">
+
+		 <form ng-submit="saveProducto()">
+
+		 <center>
+			<div class="padding" ng-show="producto.photo">
+				<img class="full-image" ng-src="{{ producto.photo }}" style="width: 100px; height: 100px">
+			</div>
+		</center>
 
     		<div class="list list-inset">
 
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Nombre:</span>
-					<input type="text" placeholder="Nombre" ng-model="user.nombre" disabled>
+    			<label class="item item-input item-floating-label">
+					<span class="input-label">Tipo de Producto: </span>
+					<input type="text" placeholder="tipo de Producto" ng-model="producto.codigo" disabled>
 				</label>
 
 				<label class="item item-input item-floating-label">
-					<span class="input-label">Apellido Paterno</span>
-					<input type="text" placeholder="Apellido Paterno" ng-model="user.apPat" disabled>
-				</label>
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Apellido Materno</span>
-					<input type="text" placeholder="Apellido Materno" ng-model="user.apMat" disabled>
-				</label>
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Carnet de Identidad</span>
-					<input type="number" placeholder="CI" disabled ng-model="user.CI">
-				</label>
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Direccion</span>
-					<input type="text" placeholder="Direccion" disabled  ng-model="user.direccion">
+					<span class="input-label">Nombre Producto: </span>
+					<input type="text" placeholder="Nombre del producto" ng-model="producto.nombre" disabled>
 				</label>
 
-			</div>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Precio unitario: </span>
+					<input type="text" placeholder="Precio unitario" ng-model="producto.precio" disabled>
+				</label>
 
-
-			<div class="padding" ng-show="user.photo">
-				<img class="full-image" ng-src="{{ user.photo }}" alt="photo">
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Cantidad de Producto: </span>
+					<input type="text" placeholder="tipo de Producto" ng-model="producto.cantidad" disabled>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Tipo de Producto: </span>
+					<input type="text" placeholder="tipo de Producto" ng-model="producto.tipo" disabled>
+				</label>
 			</div> 
 	</form>
 			

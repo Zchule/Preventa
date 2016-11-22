@@ -12,7 +12,7 @@ CTRLS.controller('addProductosCtrl', function($scope, $state, $ionicActionSheet,
 
   $scope.takePicture = takePicture;
   $scope.choosePicture= choosePicture;
-  $scope.getPosition = getPosition;
+ 
 
   $scope.isNew = true;
   $scope.producto = {};

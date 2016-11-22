@@ -12,6 +12,7 @@ $ionicLoading.show({
 
   $scope.pedidos.$loaded().then(function (todo) {
       $ionicLoading.hide();
+
   });
    console.log($scope.pedidos);
 

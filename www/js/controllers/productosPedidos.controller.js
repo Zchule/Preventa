@@ -83,6 +83,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
                 $scope.modal.show();
                 console.dir($scope.producto);
                 $scope.productoID = $scope.producto.$id;
+                $scope.productoPhoto =$scope.producto.photo;
                 console.log($scope.productoID);
                 console.log($scope.producto.precio);
 
@@ -108,6 +109,7 @@ $scope.guardarPedido=function(cantProducto){
                   "idproducto": $scope.productoID,
                   "idPreventista": userID,
                   "idCliente": $scope.clienteID,
+                  "photo": $scope.productoPhoto,
                   "cantidadProducto": $scope.pedido.cantProducto,
                   "total": $scope.pedido.total
                 }).then(function(firebaseRef) {

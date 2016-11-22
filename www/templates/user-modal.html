@@ -1,7 +1,7 @@
 <ion-modal-view>
 
 	<ion-header-bar class="bar-positive">
-		<h2 class="title">Empleados</h2>
+		<h2 class="title">Nuevo Usuario</h2>
 		<div class="buttons">
 			<button ng-click="closeModal()" class="button icon ion-close"></button>
 		</div>
@@ -36,21 +36,29 @@
 				</label>
 
 			</div>
+				<div class="list list-inset">
+			       <label class="item item-input item-select">
+			        Tipo de Usuario
+			        <select ng-model="mySelect" ng-change="showSelectValue(mySelect)">
+			          <option>Preventa</option>
+			          <option selected>Distribuidor</option>
+			          <option>Administrador</option>
+			        </select>
+			        </label>
+			        </div>
+	<center>
 
 		<div class="item item-text-wrap">{{"Foto:"}}
 
 			<div class="row">
-
 				<div class="col">
-					<button type="button" ng-click="takePicture()" class="button icon-left ion-camera button-dark button-block">Camara</button>
+					
+						<button type="button" ng-click="takePicture()" class="button icon-left ion-camera button-dark button-block">Camara</button>
+					
 				</div>
 
-				<div class="col">
-					<button type="button" ng-click="choosePicture()" class="button icon-left ion-images button-royal button-block">Libreria</button>
-				</div>
-
-			</div>
 		</div>
+	</center>
 
 			<div class="padding" ng-show="user.photo">
 				<img class="full-image" ng-src="{{ user.photo }}" alt="photo">

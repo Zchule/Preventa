@@ -18,13 +18,13 @@ CTRLS.controller('LoginCtrl', function($scope, $rootScope, Users, $rootScope, $s
     ],
     [
     	{ref: "#/app/clientes/", icon: "icon ion-ios-people", titulo:"Lista de Clientes D"},
-    	{ref: "#/app/listaEntrega", icon: "icon ion-ios-list", titulo: "Lista de Entrega"},
+    	{ref: "#/app/listaPedidos", icon: "icon ion-ios-list", titulo: "Lista de Entrega"},
     	{ref: "#/app/mapas", icon: "icon ion-map", titulo: "Mapa de Entrega"} 
     ],
     [
     	{ref: "#/app/clientes/", icon: "icon ion-ios-people", titulo:"Lista de Clientes A"},
     	{ref: "#/app/users", icon: "icon ion-ios-people", titulo: "Lista de Usuarios"},
-    	{ref: "#/app/productos", icon: "icon ion-ios-list", titulo: "Lista de Productos"}
+    	{ref: "#/app/addProductos", icon: "icon ion-ios-list", titulo: "lista de Productos"}
     	 
     ]];
 

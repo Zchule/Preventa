@@ -128,7 +128,7 @@ APP.run(function($ionicPlatform) {
       url: '/listaEntrega',
       views: {
         'menuContent': {
-          templateUrl: 'templates/listaEntrega.html',
+          templateUrl: 'templates/listaPedidos.html',
           controller: 'listaEntregaCtrl'
         }
       }
