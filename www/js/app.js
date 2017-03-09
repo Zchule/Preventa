@@ -48,6 +48,7 @@ APP.run(function($ionicPlatform) {
     templateUrl: 'templates/menu.html',
     controller: 'ProductosPedidoCtrl'
   })
+
     .state('app.loginCliente', {
     url: '/loginCliente',
     views: {

@@ -49,7 +49,7 @@ function verProducto(index){
 function showOptions(indexProducto){    
     $ionicActionSheet.show({
       buttons: [
-        { text: '<i class="icon ion-eye"></i> ver producto' }
+        { text: '<i class="icon ion-eye"></i> Visualizar Producto' }
       ],
       //destructiveText: "<i class='icon ion-trash-b'></i> Delete",
       cancelText: 'CANCEL',

@@ -1,4 +1,4 @@
-CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $cordovaGeolocation, $cordovaCamera, $ionicLoading) {
+CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicLoading, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $cordovaGeolocation, $cordovaCamera) {
 
 //$cordovaCapture
 	$scope.showOptions = showOptions;
@@ -16,6 +16,21 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
   $scope.isNew = true;
   $scope.cliente = {};
   $scope.modal = null;
+
+//guardando la conexion de firebase
+  $ionicLoading.show({
+        template:'Cargando...'
+      });
+  
+  $scope.clientes = Clientes.all();
+
+  $scope.clientes.$loaded().then(function (todo) {
+        $ionicLoading.show({
+        template:'Cargando...'
+      });
+        $ionicLoading.hide();
+      
+  });
 
   $ionicModal.fromTemplateUrl('templates/cliente-modal.html', {
     scope: $scope
@@ -66,24 +81,12 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
     $scope.modal2.hide();
   }
 
-
-  $ionicLoading.show({
-    template:'Cargando...'
-  });
-
-//guardando la conexion de firebase
-  $scope.clientes = Clientes.all();
-
-  $scope.clientes.$loaded().then(function (todo) {
-      $ionicLoading.hide();
-  });
-
   $scope.agregarCliente = function() {
 
     $scope.visibility=true;
       if($scope.isNew){
 
-       //$scope.cliente.photo='img/ionic.png';
+       $scope.cliente.photo='img/ionic.png';
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
 
@@ -172,11 +175,11 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
 	function showOptions( indexCliente ){    
     $ionicActionSheet.show({
       buttons: [
-        { text: '<i class="icon ion-android-contact"></i> ver' },
-        { text: '<i class="icon ion-edit"></i> Editar' },
+        { text: '<i class="icon ion-android-contact"></i> Visualizar Datos ' },
+        { text: '<i class="icon ion-edit"></i> Modificar' },
         {text: '<i class="icon ion-clipboard"></i> Ver Pedidos' }
       ],
-      destructiveText: "<i class='icon ion-trash-b'></i> Delete",
+      destructiveText: "<i class='icon ion-trash-b'></i> Eliminar ",
       cancelText: 'CANCEL',
       titleText: "OPCIONES",
       destructiveButtonClicked: function(){
@@ -259,16 +262,11 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicActionSheet, $io
       console.log(position);
       $scope.latitude = position.coords.latitude;
       $scope.longitude = position.coords.longitude;
-
-      var confirmPopup = $ionicPopup.alert({
-                      title: 'AGREGADO',
-                      template: 'su ubicacion fue Agregado'
-                       });
       //$scope.coords=position.coords;  //para agarrar en conjunto
       console.log($scope.latitude);
       console.log($scope.longitude);
 
-
+      alert(position.coords);
     }); 
   }
   //$scope.clientes = Clientes.all();

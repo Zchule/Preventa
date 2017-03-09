@@ -15,35 +15,43 @@ CTRLS.controller('RegistroCtrl', function($scope, $stateParams, Clientes, $state
 
       if($scope.isNew){
 
-       //$scope.cliente.photo='img/ionic.png';
+       $scope.cliente.photo='img/ionic.png';
                 /** Se guadar en firebase */
                 $scope.clientes.$add({
 
                   "nombre":$scope.cliente.nombre,
                   "apPat":$scope.cliente.apPat,
                   "apMat":$scope.cliente.apMat,
-                  "photo": $scope.cliente.photo,
+                  "photo":$scope.cliente.photo,
                   "CI":$scope.cliente.CI,
                   "nombreTienda":$scope.cliente.nombreTienda,
                   "latitude":$scope.latitude,
                   "longitude":$scope.longitude
 
                 });
+                console.log($scope.cliente);
+                //$scope.closeModal($scope.cliente.nombre);
                 $scope.cliente ={};
                 return $scope.cliente; 
-                $state.go('app.clientes');           
+                          
               }
               //$state.go('app.clientes');
           }
 
-	function saveCliente(){
-    if($scope.isNew){
-      $scope.cliente.photo='img/ionic.png';
-      $scope.clientes.push( $scope.cliente );
-      $scope.cliente ={};
-    }
+  $scope.closeModal = function(nombre){
     $state.go('app.clientes');
   }
+
+	function saveCliente(){
+
+      if($scope.isNew){
+        $scope.agregarCliente();
+        console.log("nuevo");
+      }else{
+
+        $scope.updateCliente();
+      }
+    }
   //$scope.clientes = Clientes.all();
 
   function choosePicture(){

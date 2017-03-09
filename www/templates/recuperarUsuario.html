@@ -1,0 +1,31 @@
+<ion-modal-view>
+<ion-header-bar class="bar-positive">
+  <div>
+      <h1 class="title" style="text-align:center">PREGUNTAS DE SEGURIDAD </h1>
+   
+    <button type="button" class ="button button-icon ion-ios-close item-icon-rigth" ng-click="closeModal()"></button>
+</div>
+</ion-header-bar>
+
+
+<ion-view title="Recuperar Datos">
+  <ion-content>
+     <form>
+      <div class="list list-inset">
+      <h5>Pregunta 1</h5>
+        <label class="intem item-input">
+          <input placeholder="Escriba el nombre" type="text" ng-model="data.nombre">
+        </label>
+      <h5>Pregunta 2</h5>
+        <label class="intem item-input">
+          <input placeholder="Escriba el numero" type="number" ng-model="data.numero">
+          <!--minlength ="3"-->
+        </label>
+      </div>
+
+      <div class="padding">
+        <button iu-sref="app" ng-disabled="!data.nombre || !data.numero" class ="button button-small bar bar-positive" ng-click="recuperarDatos()">Enviar</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

@@ -15,7 +15,7 @@
 				<img class="full-image" type="center" ng-src="{{ producto.photo }}" style="width: 100px; height: 100px">
 			</div>
 			</center>
-		<form ng-submit="guardarPedido(pedido.cantProducto)">
+		<form ng-submit="pedido(pedido.cantProducto)">
 			
 			<div class="list">
 				
@@ -50,7 +50,7 @@
   				 </label>
 
   				<label class="item item-input">
-    			<span class="input-label">Precio Total:</span>
+    			<span class="input-label" disabled >Precio Total:</span>
     			{{producto.precio*pedido.cantProducto}}
     			<input type="Number" ng-model="pedido.total">
   				</label>

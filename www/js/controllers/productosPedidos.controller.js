@@ -61,7 +61,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
       //$rootScope.indexP= indexProducto;
     $ionicActionSheet.show({
       buttons: [
-        { text: '<i class="icon ion-clipboard"></i> hacer Pedido' }
+        { text: '<i class="icon ion-clipboard"></i> Realizar Pedido' }
       ],
       //destructiveText: "<i class='icon ion-trash-b'></i> Delete",
       cancelText: 'CANCEL',
@@ -89,6 +89,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
 
                 $scope.pedido.cantProducto = 1;
               }
+$scope.isNew = true;
 
 $scope.guardarPedido=function(cantProducto){
   // id del preventista
@@ -112,21 +113,47 @@ $scope.guardarPedido=function(cantProducto){
                   "photo": $scope.productoPhoto,
                   "cantidadProducto": $scope.pedido.cantProducto,
                   "total": $scope.pedido.total
-                }).then(function(firebaseRef) {
-                  var id = firebaseRef.key();
-                    console.log(id);
-                    var confirmPopup = $ionicPopup.alert({
+                });
+    $scope.pedido.total="";
+    $scope.modal.hide();
+    var confirmPopup = $ionicPopup.alert({
                       title: 'EXIT',
                       template: 'su pedido fue ingresado'
                        });
-                  
-                  });
-
-    $scope.pedido.total="";
-    $scope.modal.hide();
     $state.go("app.productosPedidos");
   };
 
+  function savePedido(){
+
+      if($scope.isNew){
+        $scope.agregarPedido();
+        console.log("nuevo");
+      }else{
+
+        $scope.pedido();
+      }
+    }
+
+$scope.pedido = function (cantProducto){
+    var userID = $rootScope.usuarioID;
+    var userPreventa = $rootScope.usuarioRol;
+    $scope.clienteID = $rootScope.clienteID;
+    $scope.pedido.cantProducto = cantProducto;
+    $scope.pedido.total = parseInt($scope.pedido.cantProducto* $scope.producto.precio);
+
+    var cliente = Clientes.getRef($scope.clienteID);
+     /** Se actualiza en firebase */
+                cliente.update({
+                  "Lista Pedidos":{
+                  "idproducto":$scope.productoID,
+                  "idPreventista": userID,
+                  "idCliente": $scope.clienteID,
+                  "photo": $scope.productoPhoto,
+                  "cantidadProducto": $scope.pedido.cantProducto,
+                  "total": $scope.pedido.total}    
+                  
+                  });
+  };
   
   //filtrar po codigo de cliente
   $scope.pedidos.$loaded().then(function (todo) {
@@ -135,6 +162,7 @@ $scope.guardarPedido=function(cantProducto){
 
   Pedidos.all().forEach(function (element){
     console.dir(element);
+    console.log(element);
   });
 /*
   var filtrarPedido = function(idCliente){

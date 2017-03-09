@@ -149,9 +149,9 @@ CTRLS.controller('UsersCtrl', function($scope, Users, $state, $ionicActionSheet,
     $ionicActionSheet.show({
       buttons: [
         { text: '<i class="icon ion-android-contact"></i> ver' },
-        { text: '<i class="icon ion-edit"></i> Editar' }
+        { text: '<i class="icon ion-edit"></i> Modificar ' }
       ],
-      destructiveText: "<i class='icon ion-trash-b'></i> Delete",
+      destructiveText: "<i class='icon ion-trash-b'></i> Eliminar",
       cancelText: 'CANCEL',
       titleText: "OPCIONES",
       destructiveButtonClicked: function(){
