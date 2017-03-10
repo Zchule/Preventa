@@ -1,7 +1,7 @@
 <ion-modal-view>
 
 	<ion-header-bar class="bar-calm">
-		<h2 class="title"> Hacer Pedido</h2>
+		<h2 class="title"> Pedido</h2>
 		<!--{{producto.name}} como titulo-->
 		<div class="buttons">
 			<button ng-click="Salir()" class="button icon ion-close"></button>
@@ -11,7 +11,7 @@
 	<ion-content>
 			<center>
 
-		<div class="padding" ng-show="producto.photo">
+		<div class="padding" ng-show="pedido.photo">
 				<img class="full-image" type="center" ng-src="{{ producto.photo }}" style="width: 100px; height: 100px">
 			</div>
 			</center>
@@ -21,46 +21,29 @@
 				
 				<label class="item item-input">
 					<span class="input-label">Codigo:</span>
-					<p>{{producto.codigo}}</p>
+					<p>{{pedido.codigo}}</p>
 
 				</label>
 
 				<label class="item item-input">
 					<span class="input-label">Nombre:</span>
-					<p>{{producto.nombre}}</p>
+					<p>{{pedido.nombre}}</p>
 
 				</label>
 
 				<label class="item item-input">
 					<span class="input-label">Cantidad:</span>
-					<p>{{producto.cantidad}}</p>
+					<p>{{ppedid.cantidad}}</p>
 				</label>
 
 				<label class="item item-input">
 					<span class="input-label">Precio unidad:</span>
-					<p>{{producto.precio}}</p>
+					<p>{{pedido.precio}}</p>
 				</label>
 			</div>
-
-			<div>
-
-  				 <label class="item item-input">
-   				 <span class="input-label">Cantidad:</span>
-    			<input type="Number" ng-model="pedido.cantProducto">
-  				 </label>
-
-  				<label class="item item-input">
-    			<span class="input-label">Precio Total:</span>
-    			{{producto.precio*pedido.cantProducto}}
-    			<input type="Number"> <!--ng-model="pedido.total" -->
-  				</label>
-
-  			</div>
-
-
 			
 			<div class="padding">
-				<button type="submit" class="button button-positive button-block" ng-click="closeModal()">Hacer Pedido</button>
+				<button type="submit" class="button button-positive button-block" ng-click="closeModal()">Salir</button>
 			</div>
 
 		</form>

@@ -145,12 +145,12 @@ APP.run(function($ionicPlatform) {
       }
     })
 
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.clientePedido', {
+      url: '/clientePedido',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/clientePedido.html',
+          controller: 'ClientePedidoCtrl'
         }
       }
     })

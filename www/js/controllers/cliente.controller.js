@@ -48,8 +48,7 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicLoading, $ionicA
     $scope.modal2 = modal2;
   });
 
-
-  function openModal(){
+   function openModal(){
     //$scope.isNew = true;
     $scope.cliente = {};
     $scope.visibility="true";
@@ -170,6 +169,12 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicLoading, $ionicA
   $scope.verPedidoCliente = verPedidoCliente;
   function verPedidoCliente(index){
     console.log("verPedidoCliente")
+    console.log(index);
+    $scope.cliente = $scope.clientes[index];
+    $state.go('app.clientePedido');
+
+    console.log($scope.cliente.codigo);
+
   }
 
 	function showOptions( indexCliente ){    

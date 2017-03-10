@@ -1,0 +1,68 @@
+<ion-modal-view>
+
+	<ion-header-bar class="bar-calm">
+		<h2 class="title"> Pedido</h2>
+		<!--{{producto.name}} como titulo-->
+		<div class="buttons">
+			<button ng-click="closeModal3()" class="button icon ion-close"></button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+			<center>
+
+		<div class="padding" ng-show="pedido.photo">
+				<img class="full-image" type="center" ng-src="{{ pedido.photo }}" style="width: 100px; height: 100px">
+			</div>
+			</center>
+		<form>
+			
+			<div class="list">
+
+				<label class="item item-input">
+					<span class="input-label">Nombre Producto:</span>
+					<p>{{pedido.nombre}}</p>
+
+				</label>
+
+				<label class="item item-input">
+					<span class="input-label">Precio Producto:</span>
+					<p>{{pedido.precio}}</p>
+
+				</label>
+
+				
+				<label class="item item-input">
+					<span class="input-label">Codigo Preventista:</span>
+					<p>{{pedido.idPreventista}}</p>
+
+				</label>
+
+				<label class="item item-input">
+					<span class="input-label">Codigo Producto:</span>
+					<p>{{pedido.idProducto}}</p>
+
+				</label>
+
+				<label class="item item-input">
+					<span class="input-label">Codigo cliente:</span>
+					<p>{{pedido.idCliente}}</p>
+				</label>
+
+				<label class="item item-input">
+					<span class="input-label">Cantidad Total:</span>
+					<p>{{pedido.cantidadProducto}}</p>
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Costo Total:</span>
+					<p>{{pedido.total}}</p>
+				</label>
+			</div>
+			
+			<div class="padding">
+				<button type="submit" class="button button-positive button-block" ng-click="closeModal3()">Salir</button>
+			</div>
+
+		</form>
+	</ion-content>
+</ion-modal-view>

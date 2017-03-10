@@ -79,6 +79,7 @@ CTRLS.controller('ProductosPedidoCtrl', function($scope, $ionicLoading, $rootSco
   }
   $scope.hacerPedido = function(index){
                 console.log("index" + index);
+                $scope.pedido.total="";
                 $scope.producto = $scope.productos[index];
                 $scope.modal.show();
                 console.dir($scope.producto);
@@ -104,7 +105,6 @@ $scope.guardarPedido=function(cantProducto){
     $scope.clienteID = $rootScope.clienteID;
     $scope.pedido.cantProducto = cantProducto;
     $scope.pedido.total = parseInt($scope.pedido.cantProducto* $scope.producto.precio);
-
      /** Se guadar en firebddddddfase */
                 $scope.pedidos.$add({
                   "idproducto": $scope.productoID,
@@ -114,15 +114,14 @@ $scope.guardarPedido=function(cantProducto){
                   "cantidadProducto": $scope.pedido.cantProducto,
                   "total": $scope.pedido.total
                 });
-    $scope.pedido.total="";
-    $scope.modal.hide();
-    var confirmPopup = $ionicPopup.alert({
+     var confirmPopup = $ionicPopup.alert({
                       title: 'EXIT',
                       template: 'su pedido fue ingresado'
                        });
-    $state.go("app.productosPedidos");
-  };
 
+    $scope.modal.hide();
+    $state.go("app.productosPedidos");
+  }
   function savePedido(){
 
       if($scope.isNew){
