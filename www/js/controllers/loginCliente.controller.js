@@ -12,7 +12,7 @@ CTRLS.controller('loginClienteCtrl', function($scope, Clientes, $ionicLoading, $
             console.log($scope.clientes[i].codigo);
             console.log($scope.clientes[i].password);
 
-            if ($scope.loginData.username == $scope.clientes[i].codigo && $scope.loginData.password == $scope.clientes[i].password) {
+            if ($scope.loginData.username == $scope.clientes[i].codigo) {
 
                 $rootScope.clienteID = $scope.clientes[i].codigo;
                 $rootScope.clienteKey = $scope.clientes[i].$id;
