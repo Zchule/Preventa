@@ -78,6 +78,15 @@ APP.run(function($ionicPlatform) {
         }
       }
     })
+    .state('app.clientesP', {
+      url: '/clientesP/:User',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/clientes2.html',
+          controller: 'Clientes2Ctrl'
+        }
+      }
+    })
 
   .state('app.registro', {
     url: '/registro',

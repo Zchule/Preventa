@@ -1,8 +1,8 @@
-CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicLoading, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $cordovaGeolocation, $cordovaCamera) {
+CTRLS.controller('Clientes2Ctrl', function($scope, $state, $ionicLoading, $ionicActionSheet, $ionicModal, Clientes, $ionicPopup, $cordovaGeolocation, $cordovaCamera) {
 
 //$cordovaCapture
-	$scope.showOptions = showOptions;
- 	$scope.editCliente = editCliente;
+  $scope.showOptions = showOptions;
+  $scope.editCliente = editCliente;
   $scope.openModal = openModal;
   $scope.closeModal = closeModal;
   $scope.saveCliente = saveCliente;
@@ -181,20 +181,22 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicLoading, $ionicA
     $ionicActionSheet.show({
       buttons: [
         { text: '<i class="icon ion-android-contact"></i> Visualizar Datos ' },
-
-        {text: '<i class="icon ion-clipboard"></i> Ver Pedidos' }
+        { text: '<i class="icon ion-edit"></i> Modificar' }
       ],
-      
+      destructiveText: "<i class='icon ion-trash-b'></i> Eliminar ",
       cancelText: 'CANCEL',
       titleText: "OPCIONES",
-      
+      destructiveButtonClicked: function(){
+        $scope.deleteCliente( indexCliente );
+        return true;
+      },
       buttonClicked: function(indexButton){
         if(indexButton == 0){
           $scope.verCliente( indexCliente );
         }else
         {
           if(indexButton == 1){
-              $scope.verPedidoCliente( indexCliente );
+              $scope.editCliente( indexCliente );
           }
         }
         return true;
@@ -266,4 +268,3 @@ CTRLS.controller('ClientesCtrl', function($scope, $state, $ionicLoading, $ionicA
   }
   //$scope.clientes = Clientes.all();
 });
-

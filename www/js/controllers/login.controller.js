@@ -9,7 +9,7 @@ CTRLS.controller('LoginCtrl', function($scope, $ionicModal, $rootScope, Users, $
 
 	$scope.menus = 
 	[[
-    	{ref: "#/app/clientes/", icon: "icon ion-ios-people", titulo:"Lista de Clientes P"},
+    	{ref: "#/app/clientesP/", icon: "icon ion-ios-people", titulo:"Lista de Clientes P"},
     	{ref: "#/app/registro", icon: "icon ion-person-add", titulo:"Registro"},
     	{ref: "#/app/productos", icon: "icon ion-ios-list", titulo: "Productos"},
     	{ref: "#/app/mapas", icon: "icon ion-map", titulo: "Mapa"},
