@@ -132,12 +132,14 @@ CTRLS.controller('ProductosPedidoCtrl',
             $scope.pedido.total = parseInt($scope.pedido.cantProducto * $scope.producto.precio);
             /** Se guadar en firebddddddfase */
             $scope.pedidos.$add({
+
                 "idproducto": $scope.productoID,
                 "idPreventista": userID,
                 "idCliente": $scope.clienteID,
                 "photo": $scope.productoPhoto,
                 "cantidadProducto": $scope.pedido.cantProducto,
-                "total": $scope.pedido.total
+                "total": $scope.pedido.total,
+
             }).then(function(ref) {
                 var id = ref.key();
                 console.log("added record with id " + id);
@@ -181,7 +183,8 @@ CTRLS.controller('ProductosPedidoCtrl',
                 "idCliente": $scope.clienteID,
                 "photo": $scope.productoPhoto,
                 "cantidadProducto": $scope.pedido.cantProducto,
-                "total": $scope.pedido.total
+                "total": $scope.pedido.total,
+                "fecha_pedido": firebase.database.ServerValue.TIMESTAMP
             }).then(function(value) {
 
                 console.log(value.$id);
