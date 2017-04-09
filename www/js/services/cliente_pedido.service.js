@@ -3,7 +3,7 @@ SERVICES.factory('ClientePedido', ['$firebaseArray', '$firebaseObject', function
     return {
         //retorna la referencia a la base de datos 'todos'
         allRef: function() {
-            return new Firebase('https://bddproyecto.firebaseio.com/cliente_pedido');
+            return firebase.database().ref('cliente_pedido');
         },
         //La referencia la retorna como un array de firebase
         all: function() {
@@ -11,7 +11,7 @@ SERVICES.factory('ClientePedido', ['$firebaseArray', '$firebaseObject', function
         },
         //retorna la referencia  a un objeto 'todo'
         getRef: function(id) {
-            return new Firebase('https://bddproyecto.firebaseio.com/cliente_pedido/' + id);
+            return firebase.database().ref('cliente_pedido/' + id);
         },
         //La referencia la retorna como un objeto de firebase
         get: function(id) {
